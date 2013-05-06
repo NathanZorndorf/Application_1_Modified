@@ -65,7 +65,6 @@
 // I2S Register 
 #define I2S2_I2SINTFL            *(volatile ioport Uint16*)(0x2A10) // I2S2 Interrupt Flag Register
 
-static int count = 0;
 static long isrEntryCount = 0;
 /* Variables for DMA functions */
 CSL_DMA_Handle		 hDMA1_CH0;
@@ -115,7 +114,7 @@ void bufferCopy(Int16 *input, Int16 *output, Int16 size, Int16 offset_in, Int16 
 interrupt void DMA_IsR(void) {
 	
 	CSL_Status	status;
-	Uint16 register_value1, register_value2;
+	Uint16 register_value1;
 
 	// Clear CPU DMA interrupt 
 	register_value1 = IFR0;
