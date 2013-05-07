@@ -42,7 +42,8 @@ Int16 mono_input;
 complexNum audio_buffer[WINDOW_SAMPLE_SIZE];
 
 void Audio_Straight_Through(void) {
-	while(j < 6000)
+	//while(j < 10000)
+	while(1)
 	{  
 	 	for ( i = 0  ; i < WINDOW_SAMPLE_SIZE   ;i++  )
 		 	{

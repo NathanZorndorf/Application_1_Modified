@@ -13,7 +13,8 @@
 #include <My_I2C.h> 
 #include <My_AIC3204.h>
 #include <My_I2S.h>
-//#include <Audio_Straight_Through.h>
+#include <My_I2S_Register.h>
+#include <Audio_Straight_Through.h>
 //#include <My_DMA_Ping_Pong.h>
 #include <My_DMA_Ping_Pong_Register.h>
 #include <My_UART.h>
@@ -36,10 +37,8 @@ int main(void) {
  	success = My_I2C(); 
  	success = My_AIC3204();
 
- 	success = My_I2S();
- 	 
-
 	/*
+ 	success = My_I2S_Register(); // - called inside of My_DMA_Ping_Pong_Register  
 	for(i=0; i < 8; i++) // Checking to make sure I2S Receive registers are receiving data properly. 
 	{
 			printf("I2S2 Receive Left Data 0  (LSW) Register = %x \n", 	I2S2_W0_LSW_R);
@@ -48,10 +47,11 @@ int main(void) {
 	 	 	printf("I2S2 Receive Right Data 1 (MSW) Register = %x \n",	I2S2_W1_MSW_R);
 	}
 	Audio_Straight_Through();
-	*/
+	*/ 
 	
 	My_DMA_Ping_Pong_Register();
 
+	
 
  	return(1);
 }

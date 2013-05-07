@@ -30,7 +30,8 @@ From the tech ref (page 351): "Each I2S bus has access to one of the four DMA pe
 #include <My_DMA_Ping_Pong.h>
 #include <My_AIC3204.h> 
 
-#define I2S2_I2SINTFL          *(volatile ioport Uint16*)(0x2A10) // I2S2 Interrupt Flag Register
+#define I2S2_I2SINTFL            *(volatile ioport Uint16*)(0x2A10) // I2S2 Interrupt Flag Register
+#define I2S2_I2SINTMASK          *(volatile ioport Uint16*)(0x2A14) // I2S Interrupt Mask Register
 
 int My_I2S(void) {
 	 
@@ -45,9 +46,9 @@ int My_I2S(void) {
    	 I2S_Config     	 configI2S;  // used in I2S_setup
 	 
 // ------------------------ I2S2 Setup ------------------------ //
-     printf("\nI2S SETUP BEGIN\n");
+     printf("\nI2S SETUP BEGIN!!!\n");
      i2sInstNum = I2S_INSTANCE2; 	// - OK
-     opMode 	= DMA_INTERRUPT; 	// - ?
+     opMode 	= I2S_INTERRUPT; 	// - ?
      chType 	= I2S_CHAN_STEREO;  // - OK
      hI2S2 		= I2S_open(i2sInstNum, opMode, chType); // - OK
      
@@ -75,12 +76,11 @@ int My_I2S(void) {
 	 if (status != CSL_SOK) { printf("I2S ERROR: Could not enable data transfer!\n"); return 0; } 
 		else {printf("I2S data transfer bit enabled!\n"); }
   
-
-    printf("I2SINTFL = 0x%X\n", I2S2_I2SINTFL);
-  	printf("I2SSRATE = %X \n", 	I2S2_SRGR); // Print value of  I2S2_SRGR : I2S2 Sample Rate Generator Register
-	printf("I2SSCTRL = %X \n", 	I2S2_CR); // Print value of I2S2_CR : I2S2 Serializer Control Register  
-	printf("I2SINTMASK = %X \n", I2S2_ICMR); // Print value of I2S2_ICMR : I2S2 Interrupt Mask Register   
-	printf("I2S SETUP END \n\n");
+    printf("I2S2_INTMASK = 0x%X\n", I2S2_I2SINTMASK);
+    printf("I2S2_INTFL = 0x%X\n", I2S2_I2SINTFL);
+  	printf("I2S2_SRATE = %X \n", 	I2S2_SRGR); // Print value of  I2S2_SRGR : I2S2 Sample Rate Generator Register
+	printf("I2S2_SCTRL = %X \n", 	I2S2_CR); // Print value of I2S2_CR : I2S2 Serializer Control Register  
+	printf("I2S SETUP END!!! \n\n");
     //--- I2S END
 
 	return(0);

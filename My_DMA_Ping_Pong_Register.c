@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <usbstk5505.h>
 #include <My_I2S.h> 
+#include <My_I2S_Register.h> 
 
 #define CSL_DMA_BUFFER_SIZE 1024
 #define OFFSET      		CSL_DMA_BUFFER_SIZE
@@ -177,9 +178,7 @@ void My_DMA_Ping_Pong_Register(void) {
  	 printf("DMA SETUP BEGIN!!\n");
      /* --------------------- Interrupts Setup --------------------- */  
      printf("DMA INTERRUPTS SETUP BEGIN!!\n");
-     count = 0;
-	 isrEntryCount = 0;
-	     
+
      IRQ_globalDisable(); // It disables the interrupt globally by disabling INTM bit and also return the previous mask value for INTM bit
 	 IRQ_clearAll(); // This function clears all the interrupts. Both IFR0 and IFR1 are cleared by this function.
 	 IRQ_disableAll(); // This function disables all the interrupts avaible on C5505 DSP. Both IER0 and IER1 are cleared by this function
@@ -273,7 +272,7 @@ void My_DMA_Ping_Pong_Register(void) {
 	DMA1_DMACH3TCR2 |= 0x8004;
 	
 	// Step 12
-	My_I2S();
+	My_I2S_Register();
     
     printf("\n");
 	printf("VECSTART 		= 0x%X \n\n", VECSTART);

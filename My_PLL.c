@@ -24,6 +24,11 @@
 #define PLL_CGCR3 *(volatile ioport Uint16*)(0x1C22)
 #define PLL_CGCR4 *(volatile ioport Uint16*)(0x1C23)
 
+// CPU Registers
+#define CPU_EBSR          	   *(volatile ioport Uint16*)(0x1C00) // External Bus Selection Register
+#define CPU_PSRCR			   *(volatile ioport Uint16*)(0x1C04) // Peripheral Software Reset Counter Register
+#define CPU_PRCR			   *(volatile ioport Uint16*)(0x1C05) // Peripheral Software Reset Counter Register
+
 int My_PLL(void) {
 
 
@@ -44,6 +49,14 @@ int My_PLL(void) {
     SYS_PCGCR1 = 0x0000; // - OK
     SYS_PCGCR2 = 0x0000; // - OK
     
+    // External Bus Selection Register 
+	CPU_EBSR = 0x1000; // Mode 1 (SPI, GPIO, UART, and I2S2) - ?
+	printf("EBSR = 0x%X\n",CPU_EBSR);
+	
+	// Peripheral Reset
+	CPU_PSRCR = 0x0008; 
+	CPU_PRCR = 0x00FF; 
+	
     status = PLL_init(&pllObj, CSL_PLL_INST_0); // - OK
     
 	hPll = (PLL_Handle)(&pllObj); // - OK
