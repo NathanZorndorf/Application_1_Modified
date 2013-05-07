@@ -40,8 +40,10 @@ int My_I2S_Register(void) {
 // ------------------------ I2S2 Setup Begin ------------------------ //
     printf("\nI2S SETUP BEGIN!!!\n");
      
-    //I2S2_I2SINTMASK = 0x0000; // For use with Audio_Straight_Through_Using_DMA.c
-    I2S2_I2SINTMASK = 0x002B; // For use with Audio_Straight_Through.c
+
+	I2S2_I2SINTMASK = 0x0003; // For use with Audio_Straight_Through_Using_DMA.c
+    //I2S2_I2SINTMASK = 0x002B; // For use with Audio_Straight_Through.c
+
     
     I2S2_I2SSCTRL   = 0x8090; /* Set I2S0 in stereo mode, 16-bit, with data packing, slave */
 	

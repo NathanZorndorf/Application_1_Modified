@@ -208,7 +208,7 @@ void My_DMA_Ping_Pong_Register(void) {
     SYS_PCGCR2 = 0x0000; // - OK
     
     // step 3
-    DMA_IFR = 0xFFFF; //  Enable Interrupts for Controller 1, Channels 0-3
+    DMA_IFR = 0xFFFF; //  CLear Interrupts for DMA
     IFR0 = 0x0100;    /* Clear DMA CPU interrupt flag */
  	printf("DMA_IFR   		= 0x%X \n", DMA_IFR); // 1 = DMA controller n, channel m block transfer complete.
  	printf("IER0     		= 0x%X \n", IER0);
