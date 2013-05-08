@@ -28,12 +28,6 @@
 #define CPU_PSRCR			   *(volatile ioport Uint16*)(0x1C04) // Peripheral Software Reset Counter Register
 #define CPU_PRCR			   *(volatile ioport Uint16*)(0x1C05) // Peripheral Software Reset Counter Register
 
-// My_I2S_Register.c
-#define I2S2_I2SSCTRL            *(volatile ioport Uint16*)(0x2A00) // I2S2 Serializer Control Register
-#define I2S2_I2SSRATE            *(volatile ioport Uint16*)(0x2A04) // I2S2 Sample Rate Generator Register
-#define I2S2_I2SINTFL            *(volatile ioport Uint16*)(0x2A10) // I2S2 Interrupt Flag Register
-#define I2S2_I2SINTMASK          *(volatile ioport Uint16*)(0x2A14) // I2S2 Interrupt Mask Register
-
 // My_DMA
 /* ==================== Some CPU Registers ==================== */
 #define IER0        			 *(volatile unsigned *)0x0000
@@ -48,7 +42,7 @@
 
 /* ==================== DMA Controller 1 ==================== */
 #define DMA1_CESR1 *(ioport volatile unsigned *)0x1C1C //DMA1 Channel Event Source Register 1
-#define DMA1_CESR2 *(ioport volatile unsigned *)0x1C1C //DMA1 Channel Event Source Register 2
+#define DMA1_CESR2 *(ioport volatile unsigned *)0x1C1D //DMA1 Channel Event Source Register 2
 /* ------------------------ Channel 0 ----------------------- */
 #define DMA1_CH0_SSAL *(ioport volatile unsigned *)0x0D00 //Channel 0 Source Start Address (Lower Part) Register
 #define DMA1_CH0_SSAU *(ioport volatile unsigned *)0x0D01 //Channel 0 Source Start Address (Upper Part) Register
@@ -86,11 +80,19 @@
 /* ---------------------------------------------------------- */
 
 /* ==================== I2S2 Registers  ==================== */
-#define I2S2_Left_LSW      		 *(volatile ioport Uint16*)(0x2A28)
-#define I2S2_Left_MSW      		 *(volatile ioport Uint16*)(0x2A29)
-#define I2S2_Right_LSW      	 *(volatile ioport Uint16*)(0x2A2C)
-#define I2S2_Right_MSW      	 *(volatile ioport Uint16*)(0x2A2D)
+#define I2S2_I2SSCTRL            *(volatile ioport Uint16*)(0x2A00) // I2S2 Serializer Control Register
+#define I2S2_I2SSRATE            *(volatile ioport Uint16*)(0x2A04) // I2S2 Sample Rate Generator Register
 #define I2S2_I2SINTFL            *(volatile ioport Uint16*)(0x2A10) // I2S2 Interrupt Flag Register
+#define I2S2_I2SINTMASK          *(volatile ioport Uint16*)(0x2A14) // I2S2 Interrupt Mask Register
 
+#define I2S2_Left_RX_LSW      		 *(volatile ioport Uint16*)(0x2A28)
+#define I2S2_Left_RX_MSW      		 *(volatile ioport Uint16*)(0x2A29)
+#define I2S2_Right_RX_LSW      	 	 *(volatile ioport Uint16*)(0x2A2C)
+#define I2S2_Right_RX_MSW      	 	 *(volatile ioport Uint16*)(0x2A2D)
+
+#define I2S2_Left_TX_LSW      		 *(volatile ioport Uint16*)(0x2A08)
+#define I2S2_Left_TX_MSW      		 *(volatile ioport Uint16*)(0x2A09)
+#define I2S2_Right_TX_LSW      	 	 *(volatile ioport Uint16*)(0x2A0C)
+#define I2S2_Right_TX_MSW      	 	 *(volatile ioport Uint16*)(0x2A0D)
 
 #endif /*APPLICATION_1_MODIFIED_REGISTERS_H_*/

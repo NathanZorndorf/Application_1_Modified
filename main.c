@@ -39,11 +39,13 @@ int main(void) {
 	
 	printf("Hello Nathan. Let's get funky. \n");
  	My_PLL();
+
  	IER0 = 0xC100; // DMA, I2S RX/TX Interrupt Enable. 
+ 	
  	My_I2C(); 
  	My_AIC3204();
-	My_I2S_Register();
-	
+
+
 	/*	
 	for(i=0; i < 8; i++) // Checking to make sure I2S Receive registers are receiving data properly. 
 	{
@@ -57,6 +59,9 @@ int main(void) {
 	*/
 
 	My_DMA_Ping_Pong_Register_Setup();
+	
+	My_I2S_Register();
+		
 	Audio_Straight_Through_Using_DMA();
 	
 
