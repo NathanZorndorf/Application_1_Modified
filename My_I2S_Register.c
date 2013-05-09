@@ -29,23 +29,25 @@ From the tech ref (page 351): "Each I2S bus has access to one of the four DMA pe
 #include <audio_to_midi.h>
 #include <My_DMA_Ping_Pong.h>
 #include <My_AIC3204.h> 
-
-#define I2S2_I2SSCTRL            *(volatile ioport Uint16*)(0x2A00) // I2S2 Serializer Control Register
-#define I2S2_I2SSRATE            *(volatile ioport Uint16*)(0x2A04) // I2S2 Sample Rate Generator Register
-#define I2S2_I2SINTFL            *(volatile ioport Uint16*)(0x2A10) // I2S2 Interrupt Flag Register
-#define I2S2_I2SINTMASK          *(volatile ioport Uint16*)(0x2A14) // I2S2 Interrupt Mask Register
+#include <Application_1_Modified_Registers.h>
 
 int My_I2S_Register(void) {
-
+    
+    	Uint16 register_value;
+    	
 // ------------------------ I2S2 Setup Begin ------------------------ //
     printf("\nI2S SETUP BEGIN!!!\n");
      
 
-	I2S2_I2SINTMASK = 0x0003; // For use with Audio_Straight_Through_Using_DMA.c
+	I2S2_I2SINTMASK = 0x0003; // OUERR (overrun/underrun) and FERR (frame sync) error enabled.
+	//I2S2_I2SINTMASK = 0x0000; // No flags enabled. 
     //I2S2_I2SINTMASK = 0x002B; // For use with Audio_Straight_Through.c
 
-    
-    I2S2_I2SSCTRL   = 0x8090; /* Set I2S0 in stereo mode, 16-bit, with data packing, slave */
+    I2S2_I2SSCTRL   = 0x0090; // Set I2S0 in stereo mode, 16-bit, with data packing, slave 
+	
+	// Enable I2S0 
+	register_value = I2S2_I2SSCTRL;
+	I2S2_I2SSCTRL = 0x8000 | register_value; // Enable I2S2 
 	
     printf("I2S2_I2SINTMASK = 0x%X\n", I2S2_I2SINTMASK);
     printf("I2S2_I2SINTFL 	= 0x%X\n", I2S2_I2SINTFL);

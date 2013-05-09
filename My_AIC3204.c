@@ -20,8 +20,9 @@
 
 int My_AIC3204(void) {
 	
-	Uint16 test_reg_val;
-	int i;
+	/* these variables declared for reading AIC3204 register values */
+	//Uint16 test_reg_val;
+	//int i;
 	
     printf("AIC3204 SETUP BEGIN\n");
     // Configure Parallel Port 

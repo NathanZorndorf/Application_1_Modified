@@ -15,7 +15,17 @@
 
 /* Interrupt vector start address */  
 extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED 
- 
+/* Test Variables */
+extern Uint32 DMA_ISR_count;
+extern Uint32 DMA_ISR_0_Fill_Ping;
+extern Uint32 DMA_ISR_0_Fill_Pong;
+extern Uint32 DMA_ISR_1_Fill_Ping;
+extern Uint32 DMA_ISR_1_Fill_Pong;
+extern Uint32 DMA_ISR_2_Fill_Ping;
+extern Uint32 DMA_ISR_2_Fill_Pong;
+extern Uint32 DMA_ISR_3_Fill_Ping;
+extern Uint32 DMA_ISR_3_Fill_Pong;
+
  int My_DMA_Ping_Pong_Register_Setup(void) {
  	
  	Uint16 register_value;
@@ -24,7 +34,6 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
 	 
      // --------------------- Interrupts Setup --------------------- /  
      printf("DMA INTERRUPTS SETUP BEGIN!!\n");
-	
      	//IRQ_globalDisable(); // It disables the interrupt globally by disabling INTM bit and also return the previous mask value for INTM bit
 	 IRQ_clearAll(); // This function clears all the interrupts. Both IFR0 and IFR1 are cleared by this function.
 	 	//IRQ_disableAll(); // This function disables all the interrupts avaible on C5505 DSP. Both IER0 and IER1 are cleared by this function
@@ -36,7 +45,6 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
 	 printf("DMA INTERRUPTS SETUP END!!\n");
 	 // ------------------------------------------------------------ /
  	
- 	
  	printf("DMA SETUP BEGIN!!\n");
  		 
  	// step 3
@@ -45,14 +53,17 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
  	printf("DMA_IFR   		= 0x%X \n", DMA_IFR); // 1 = DMA controller n, channel m block transfer complete.
  	printf("IER0     		= 0x%X \n", IER0);
  	printf("IER1     		= 0x%X \n", IER1);
- 	
- 	
+ 	printf("IER0     		= 0x%X \n", IFR0);
+ 	printf("IER1     		= 0x%X \n", IFR1); 
+ 		
  	// Step 4 - Enable interrupts 
     DMA_IER = 0x00F0; // Enable interrupts for DMA1 CH0-CH3 
     
     // Step 5 - Setup sync event 
-    DMA1_CESR1 = 0x0202; /* Set CH1, CH0 sync event to I2S2 receive */
-    DMA1_CESR2 = 0x0101; /* Set CH3, CH2 sync event to I2S2 transmit*/
+    register_value 	= DMA1_CESR1;
+    DMA1_CESR1 		= register_value | 0x0202; /* Set CH1, CH0 sync event to I2S2 receive */
+    register_value 	= DMA1_CESR2;
+    DMA1_CESR2 		= register_value | 0x0101; /* Set CH3, CH2 sync event to I2S2 transmit*/
     	
     // Step 6 - Channel Source Address
     DMA1_CH0_SSAL = 0x2A28; // I2S Receive Left Data 0 Register
@@ -101,19 +112,20 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
     
     // Step 9 - Configure options 
     DMA1_CH0_TCR2 = 0x3081; // source is constant, destination address increments by four bytes after each transfer.
-        USBSTK5505_waitusec( 50 );
     DMA1_CH1_TCR2 = 0x3081;
-        USBSTK5505_waitusec( 50 );
     DMA1_CH2_TCR2 = 0x3201; // destination is constant, source address increments by four bytes after each transfer.
-        USBSTK5505_waitusec( 50 );
     DMA1_CH3_TCR2 = 0x3201;  
-    USBSTK5505_waitusec( 100 );
     
     // Step 10 - Enable DMA Controller 0 channel 0-3
-    DMA1_CH0_TCR2 = 0x8004;
-    DMA1_CH1_TCR2 = 0x8004;
-    DMA1_CH2_TCR2 = 0x8004;
-    DMA1_CH3_TCR2 = 0x8004;
+    register_value 	= DMA1_CH0_TCR2; 
+    DMA1_CH0_TCR2 	= register_value | 0x8004;
+    register_value 	= DMA1_CH1_TCR2; 
+    DMA1_CH1_TCR2 	= register_value | 0x8004;
+    register_value 	= DMA1_CH2_TCR2; 
+    DMA1_CH2_TCR2 	= register_value | 0x8004;
+    register_value 	= DMA1_CH3_TCR2; 
+    DMA1_CH3_TCR2 	= register_value | 0x8004;
+
     
     		
  	return(0);
@@ -124,6 +136,8 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
 {
 	Uint16 register_value1, register_value2;
 	
+	DMA_ISR_count++;
+	
 	/* Clear CPU DMA interrupt */
 	register_value1 = IFR0;
 	IFR0 = register_value1;
@@ -131,31 +145,29 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
 	/* Read DMA interrupt flags */
     register_value1 = DMA_IFR;
     
-    printf("entered ISR!\n");
-    
     /* Channels 0-1, input */
     if (register_value1 & 0x0030) // if DMA 1 channel 0 and 1 interrupts are flagged  
     {
-    	printf("CH 0 and 1 Interrupts flagged!!\n");
     	register_value2 = DMA1_CH0_TCR2;
     	if (register_value2 & 0x0002) { 
-    		printf("Last Transfer complete was Pong.\n");
+    		DMA_ISR_0_Fill_Ping++;
     		PingPongFlagInL = 1; // Last Transfer complete was Pong - Filling Ping
     	} else {
-    		printf("Last Transfer complete was Ping.\n");
+    		DMA_ISR_0_Fill_Pong++;
     		PingPongFlagInL = 0; // Last Transfer complete was Ping - Filling Pong
     	}
     	
     	register_value2 = DMA1_CH1_TCR2;
     	if (register_value2 & 0x0002) {
+    		DMA_ISR_1_Fill_Ping++;
     		PingPongFlagInR = 1; // Last Transfer complete was Pong - Filling Ping
     	} else {
+    		DMA_ISR_1_Fill_Pong++;
     		PingPongFlagInR = 0; // Last Transfer complete was Ping - Filling Pong
     	}
     		    
     	/* Clear CH0-1 interrupts */
-    	//DMA_IFR = 0x0030; 
-    	DMA_IFR = 0x0000; 
+    	DMA_IFR = 0x0030; 
     }
     
     /* Channels 2-3, output */
@@ -163,21 +175,24 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
     { 
     	register_value2 = DMA1_CH2_TCR2;
     	if (register_value2 & 0x0002) {
+    		DMA_ISR_2_Fill_Ping++;
     		PingPongFlagOutL = 1;
     	} else {
+    		DMA_ISR_2_Fill_Pong++;
     		PingPongFlagOutL = 0;
     	}
     	
     	register_value2 = DMA1_CH3_TCR2;
     	if (register_value2 & 0x0002) {
+    		DMA_ISR_3_Fill_Ping++;
     		PingPongFlagOutR = 1;
     	} else {
+    		DMA_ISR_3_Fill_Pong++;
     		PingPongFlagOutR = 0;
     	}
     	  	
     	/* Clear CH2-3 interrupts */
-    	//DMA_IFR = 0x00C0; 
-    	DMA_IFR = 0x0000; 
+    	DMA_IFR = 0x00C0; 
     }
 
 }

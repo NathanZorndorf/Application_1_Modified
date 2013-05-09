@@ -14,22 +14,8 @@
 #include <csl_general.h>
 #include <csl_pll.h>
 #include <csl_pllAux.h>
+#include <Application_1_Modified_Registers.h>
 
-/* ------------------------------------------------------------------------ *
- *  PLL Registers                                                           *
- * ------------------------------------------------------------------------ */
-#define PLL_CCR2  *(volatile ioport Uint16*)(0x1C1F)
-#define PLL_CGCR1 *(volatile ioport Uint16*)(0x1C20)
-#define PLL_CGCR2 *(volatile ioport Uint16*)(0x1C21)
-#define PLL_CGCR3 *(volatile ioport Uint16*)(0x1C22)
-#define PLL_CGCR4 *(volatile ioport Uint16*)(0x1C23)
-
-/* ------------------------------------------------------------------------ *
- *  CPU Registers                                                           *
- * ------------------------------------------------------------------------ */
-#define CPU_EBSR          	   *(volatile ioport Uint16*)(0x1C00) // External Bus Selection Register
-#define CPU_PSRCR			   *(volatile ioport Uint16*)(0x1C04) // Peripheral Software Reset Counter Register
-#define CPU_PRCR			   *(volatile ioport Uint16*)(0x1C05) // Peripheral Software Reset Counter Register
 
 int My_PLL(void) {
 
@@ -72,23 +58,17 @@ int My_PLL(void) {
     status = PLL_config (hPll, pConfigInfo);
     if(CSL_SOK != status) { printf("PLL config failed\n"); return(status); }
 
-	status = PLL_getConfig(hPll, &pllCfg1);
-    printf("REGISTER          --- CONFIG VALUES\n");
-    printf("PLL_CNTRL1   %04x --- %04x\n",pllCfg1.PLLCNTL1,hPll->pllConfig->PLLCNTL1);
-    printf("PLL_CNTRL2   %04x --- %04x Test Lock Mon will get set after PLL is up\n", pllCfg1.PLLCNTL2,hPll->pllConfig->PLLCNTL2);
-    printf("PLL_CNTRL3   %04x --- %04x\n",pllCfg1.PLLINCNTL,hPll->pllConfig->PLLINCNTL);
-    printf("PLL_CNTRL4   %04x --- %04x\n",pllCfg1.PLLOUTCNTL,hPll->pllConfig->PLLOUTCNTL);
-
     status = PLL_enable(hPll); 
     if(CSL_SOK != status) { printf("PLL enable failed:%d\n",CSL_ESYS_BADHANDLE); return(status); } 
   
 //---------- PLL SETUP END -------------
     printf("PLL SETUP END \n");
-	printf("PLL_CGCR1 = 0x%X \n", PLL_CGCR1); 
-	printf("PLL_CGCR2 = 0x%X \n", PLL_CGCR2); 
-	printf("PLL_CGCR3 = 0x%X \n", PLL_CGCR3);    
-	printf("PLL_CGCR4 = 0x%X \n", PLL_CGCR4); 
-	printf("PLL_CCR2  = 0x%X \n", PLL_CCR2); 		
+    printf("REGISTER          --- CONFIG VALUES\n");
+	printf("PLL_CGCR1 		  --- 0x%X \n", PLL_CGCR1); 
+	printf("PLL_CGCR2 		  --- 0x%X \n", PLL_CGCR2); 
+	printf("PLL_CGCR3 		  --- 0x%X \n", PLL_CGCR3);    
+	printf("PLL_CGCR4 		  --- 0x%X \n", PLL_CGCR4); 
+	printf("PLL_CCR2  		  --- 0x%X \n", PLL_CCR2); 		
 	
 	return(0);
 }
