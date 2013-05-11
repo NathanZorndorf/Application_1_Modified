@@ -21,7 +21,6 @@ int My_PLL(void) {
 
 	Uint16	i=0;
 	PLL_Obj pllObj;
-	PLL_Config pllCfg1;
 	PLL_Config pllCfg_100MHz    = {0x8BE8, 0x8000, 0x0806, 0x0000}; 
 	/* 1st Hex Value : CGCR1 = b12 = PLL power UP/DOWN. b11-0 = M. PLL Multiplier value = M + 4.
 	 * 2nd Hex Value : CGCR2 - b15 = Reference divider ENABLED/BYPASS. b11-0 = DRATIO => Divider Value = DRATIO + 4.

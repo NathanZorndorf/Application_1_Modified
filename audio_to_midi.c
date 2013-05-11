@@ -23,9 +23,6 @@
  	int Peak_Magnitude_Index;
  	int Peak_Found = 0;
  	int MIDI_value = 0; 
-	
-	//complexNum* audio_buffer_copy = malloc(sizeof(complexNum) * WINDOW_SAMPLE_SIZE);
-	//memcpy(audio_buffer_copy, audio_buffer, sizeof(complexNum) * WINDOW_SAMPLE_SIZE);
 	 
 	 // FFT
 	cfft((DATA*) audio_buffer, WINDOW_SAMPLE_SIZE, SCALE);

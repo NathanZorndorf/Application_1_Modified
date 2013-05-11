@@ -11,22 +11,81 @@
 #include <stereo.h>
 #include <usbstk5505_gpio.h>
 #include <usbstk5505_i2c.h>
-#include <csl_general.h>
+#include <csl_general.h>	
 #include <csl_pll.h>
 #include <csl_pllAux.h>
 #include <csl_i2c.h>
 #include <csl_i2s.h> 
 #include <aic_i2c.h>
+#include <My_AIC3204.h>
 
 int My_AIC3204(void) {
 	
+	/* Define sampling rate parameters */
+	unsigned char pll_dh, pll_dl, madc, mdac, nadc, ndac;
+	/* Choose AIC3204 sampling rate */
+	short fs = AIC3204_FS_8KHZ;
+	
+	/* Set Sampling Rate */
+	if(fs == AIC3204_FS_44_1KHZ)
+	{
+		// PLL D = 560
+		pll_dh = 0x02;
+		pll_dl = 0x30;
+
+		// MDAC & MACC = 3
+		madc = 0x03;
+		mdac = 0x03;
+
+		// NDAC & NADC = 5
+		nadc = 0x05;
+		ndac = 0x05;
+	}
+	else // 8, 16, 24, 32, 48, 96 KHz
+	{
+		// PLL D = 1680
+		pll_dh = 0x06;
+		pll_dl = 0x90;
+
+		switch(fs) {
+			case AIC3204_FS_8KHZ:
+				madc = 0x0C;
+				mdac = 0x0C;
+				break;
+			case AIC3204_FS_16KHZ:
+				madc = 0x06;
+				mdac = 0x06;
+				break;
+			case AIC3204_FS_24KHZ:
+				madc = 0x04;
+				mdac = 0x04;
+				break;
+			case AIC3204_FS_32KHZ:
+				madc = 0x03;
+				mdac = 0x03;
+				break;
+			case AIC3204_FS_48KHZ:
+				madc = 0x02;
+				mdac = 0x02;
+				break;
+			case AIC3204_FS_96KHZ:
+				madc = 0x01;
+				mdac = 0x01;
+				break;
+		}
+
+		// NDAC & NADC = 7
+		nadc = 0x07;
+		ndac = 0x07;
+	}
+				
 	/* these variables declared for reading AIC3204 register values */
 	//Uint16 test_reg_val;
 	//int i;
 	
     printf("AIC3204 SETUP BEGIN\n");
     // Configure Parallel Port 
-    SYS_EXBUSSEL = 0x1000;  // Configure Parallel Port mode = 1 for I2S2 (SPI, GPIO, UART, and I2S2).
+    SYS_EXBUSSEL |= 0x1000;  // Configure Parallel Port mode = 1 for I2S2 (SPI, GPIO, UART, and I2S2).
     // Define Starting Point   - OK
     AIC3204_rset( 0, 0);      // Select PAGE 0	   - OK
     AIC3204_rset(0x01, 0x01);      // Software Reset codec - OK
@@ -39,18 +98,18 @@ int My_AIC3204(void) {
     AIC3204_rset(0x04, 0x43);  // MCLK = PLL_CLKIN => *R*J.D/p => PLL_CLK => PLLCLK => CODEC_CLKIN and HIGH PLL clock range  - OK 
     AIC3204_rset(0x05, 0x91);  // Power up PLL, P=1, R=1 - OK
    	AIC3204_rset(0x06, 0x07);  // J = 7 - OK
-    AIC3204_rset(0x07, 0x06);  // D (MSBits) D=1680 - OK
-   	AIC3204_rset(0x08, 0x90);  // D (LSBits)  		- OK
+    AIC3204_rset(0x07, pll_dh);  // D (MSBits) D=1680 - OK
+   	AIC3204_rset(0x08, pll_dl);  // D (LSBits)  		- OK
     AIC3204_rset(0x1E, 0x88);  // WCLK source, BCLK Power UP/down, and BLCK divider value = 8 - BCLK is output to I2S2_CLK on CPU
                                // BCLK=DAC_CLK/N =(12288000/8) = 1.536MHz, which must be > 32*(FS/WCLK/ADC_FS) because that way  
                                // 32 bits can be transferred per sample 
                                // this setup -> DAC_CLK = WCLK, and BCLK = DAC_CLK/BCLKDividervalue
-    AIC3204_rset(0x0B, 0x87);  	   // NDAC = 7   - OK
-    AIC3204_rset(0x0C, 0x82);  	   // MDAC = 2   - OK       
+    AIC3204_rset(0x0B, 0x80 | ndac);  	   // NDAC = 7   - OK
+    AIC3204_rset(0x0C, 0x80 | mdac);  	   // MDAC = 2   - OK       
     AIC3204_rset(0x0D, 0x00);      // DOSR(MSbits) = 0					   - OK
     AIC3204_rset(0x0E, 0x80);      // DOSR(LSbits) = 128 decimal or 0x0080 - OK 
-    AIC3204_rset(0x12, 0x87);  	   // NADC = 7   - OK 
-	AIC3204_rset(0x13, 0x82); 	   // MADC = 2   - OK
+    AIC3204_rset(0x12, 0x80 | nadc);  	   // NADC = 7   - OK 
+	AIC3204_rset(0x13, 0x80 | madc); 	   // MADC = 2   - OK
 	AIC3204_rset(0x14, 0x80);	   // AOSR = 128 - OK
 	AIC3204_rset(0x3D, 0x01);	   // ADC PRB_R1 - OK
 	// Program Analog Blocks   - OK

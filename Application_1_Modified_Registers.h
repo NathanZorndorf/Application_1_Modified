@@ -9,7 +9,7 @@
 #define IER1        *(volatile unsigned *)0x0045
 #define IFR1        *(volatile unsigned *)0x0046
 // NOTE: The following definitions assume 50% overlap 
-#define HOP_SIZE 128            		// Hop size of overlap-add
+#define HOP_SIZE 512            		// Hop size of overlap-add
 #define AUDIO_IO_SIZE  HOP_SIZE 		// DMA transfer size 
 #define PING_PONG_SIZE (2 * AUDIO_IO_SIZE)
 #define WND_LEN     (2 * HOP_SIZE) 		// Window length 
