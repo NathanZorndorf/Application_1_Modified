@@ -32,6 +32,9 @@ Int16 imagL[FFT_LENGTH];
 #pragma DATA_SECTION(imagR, "ifftR");
 Int16 imagR[FFT_LENGTH];
 
+#pragma DATA_SECTION(PSD_Result, "PSD");
+Int16 PSD_Result[FFT_LENGTH];
+
 /* --- Special buffers required for HWAFFT ---*/
 #pragma DATA_SECTION(complex_buffer, "cmplxBuf");
 Int32 complex_buffer[WND_LEN];
@@ -49,7 +52,11 @@ void do_ifft(Int16 *fft_real, Int16 *fft_imag, Int16 *ifft_data, Uint16 scale);
 
 int Audio_To_MIDI_Using_DMA(void) {
 
-	int i;
+	int i = 0;
+	int j = 0;
+	int f = 0;
+	int Peak_Magnitude_Value = 0;
+	int Peak_Magnitude_Index = 0;
 	
 	/* Initialize buffers */
 	for (i = 0; i < WND_LEN; i++) {
@@ -99,30 +106,49 @@ int Audio_To_MIDI_Using_DMA(void) {
         	BufferR[i] = OverlapInR[i];
         }
         
-        /* Perform FFT on windowed buffer */
+        
+        // Perform FFT on windowed buffer 
    		do_fft(BufferL, realL, imagL, 1);
    		do_fft(BufferR, realR, imagR, 1);
         
-        /* Process freq. bins from 0Hz to Nyquist frequency */
+        /*
+        // Process freq. bins from 0Hz to Nyquist frequency 
 		for (i = 0; i < NUM_BINS; i++) {
-				/* Perform spectral processing here */
-				/* ... */ 
-		}
+		// Perform spectral processing here 
+			// Find magnitude of FFT result for each index 
+			for( j = 0; j < NUM_BINS; j++ )
+			{
+				PSD_Result[j] = sqrt((realR[j])^2 + (imagR[j])^2);
+			}
+			
+			// Peak search on the magnitude of the FFT to find the fundamental frequency  
+			Peak_Magnitude_Value = PSD_Result[0];
+			
+			for ( f = 1; f < NUM_BINS; f++ ) {
+				if( PSD_Result[f] > Peak_Magnitude_Value )
+				{
+					Peak_Magnitude_Value = PSD_Result[f];
+					Peak_Magnitude_Index = f;
+				} // if
+			} // for 
+			
+		} // for
+		*/
 		
-		
-		/* Complete symmetric frequencies (since audio data are real) */
+		/*
+		// Complete symmetric frequencies (since audio data are real) 
 		for (i = 1; i < FFT_LENGTH/2; i++) {
 			realL[FFT_LENGTH - i] = realL[i];
-			imagL[FFT_LENGTH - i] = -imagL[i]; /* conjugation */
+			imagL[FFT_LENGTH - i] = -imagL[i]; // conjugation 
 			realR[FFT_LENGTH - i] = realR[i];
-			imagR[FFT_LENGTH - i] = -imagR[i]; /* conjugation */
+			imagR[FFT_LENGTH - i] = -imagR[i]; // conjugation 
 		}
 
 
-		/* Perform IFFT */
+		// Perform IFFT 
    		do_ifft(realL, imagL, BufferL, 0);
    		do_ifft(realR, imagR, BufferR, 0);
-
+		*/
 
         if (PingPongFlagOutL && PingPongFlagOutR) // Last Transfer complete was Pong - Filling Ping
         {
@@ -186,16 +212,18 @@ void do_fft(Int16 *real_data, Int16 *fft_real, Int16 *fft_imag, Uint16 scale)
 
 	/* Perform FFT */
 	if (scale) {
-		data_selection = hwafft_1025pts(bitrev_data, temp_data, FFT_FLAG, SCALE_FLAG);
-	} else {
-		data_selection = hwafft_1024pts(bitrev_data, temp_data, FFT_FLAG, NOSCALE_FLAG);
+		data_selection = hwafft_512pts(bitrev_data, temp_data, FFT_FLAG, SCALE_FLAG); // for hwafft_#pts, # = 2*HOP_SIZE 
+	} 
+	else {
+		data_selection = hwafft_512pts(bitrev_data, temp_data, FFT_FLAG, NOSCALE_FLAG);
 	}
 
 	/* Return appropriate data pointer */
-	if (data_selection) {
-		fft_data = temp_data;
-	} else {
-		fft_data = bitrev_data;
+	if (data_selection == 1) {
+		fft_data = temp_data;	// results stored in this scratch vector 
+	} 
+	else {
+		fft_data = bitrev_data; // results stored in this data vector 
 	}
 
 	/* Extract real and imaginary parts */
@@ -203,7 +231,6 @@ void do_fft(Int16 *real_data, Int16 *fft_real, Int16 *fft_imag, Uint16 scale)
 		*(fft_real + i) = (Int16)((*(fft_data + i)) >> 16);
 		*(fft_imag + i) = (Int16)((*(fft_data + i)) & 0x0000FFFF);
 	}
-
 }
 
 /* ---------------- Wrapper function to implement HWAIFFT --------------- */
@@ -236,9 +263,9 @@ void do_ifft(Int16 *fft_real, Int16 *fft_imag, Int16 *ifft_data, Uint16 scale)
 
 	/* Perform IFFT */
 	if (scale) {
-		data_selection = hwafft_1024pts(bitrev_data, temp_data, IFFT_FLAG, SCALE_FLAG);
+		data_selection = hwafft_512pts(bitrev_data, temp_data, IFFT_FLAG, SCALE_FLAG);
 	} else {
-		data_selection = hwafft_1024pts(bitrev_data, temp_data, IFFT_FLAG, NOSCALE_FLAG);
+		data_selection = hwafft_512pts(bitrev_data, temp_data, IFFT_FLAG, NOSCALE_FLAG);
 	}
 
 	/* Return appropriate data pointer */

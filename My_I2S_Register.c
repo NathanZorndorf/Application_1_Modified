@@ -15,20 +15,7 @@ From the tech ref (page 351): "Each I2S bus has access to one of the four DMA pe
  */
 
 #include <stdio.h>
-#include <my_types.h>
-#include <usbstk5505.h>
-#include <aic3204.h>
-#include <PLL.h>
-#include <stereo.h>
-#include <usbstk5505_gpio.h>
-#include <usbstk5505_i2c.h>
-#include <csl_general.h>
-#include <csl_pll.h>
-#include <csl_pllAux.h>
-#include <csl_i2s.h> 
-#include <audio_to_midi.h>
-#include <My_DMA_Ping_Pong.h>
-#include <My_AIC3204.h> 
+#include <data_types.h>
 #include <Application_1_Modified_Registers.h>
 
 int My_I2S_Register(void) {

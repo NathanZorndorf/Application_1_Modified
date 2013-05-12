@@ -1,0 +1,1 @@
+"../Audio_To_MIDI_Using_DMA.c" "../My_AIC3204.c" "../My_DMA_Ping_Pong_Register_Setup.c" "../My_I2C.c" "../My_I2S.c" "../My_I2S_Register.c" "../My_PLL.c" "../PLL.c" "../aic3204.c" "../aic3204_init.c" "../aic_i2c.c" "../csl_intc.c" "../main.c" "../stereo.c" "../usbstk5505.c" "../usbstk5505_gpio.c" "../usbstk5505_i2c.c" "../usbstk5505_led.c" 

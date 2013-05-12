@@ -1,0 +1,69 @@
+# FIXED
+
+My_DMA_Ping_Pong_Register_Setup.obj: ../My_DMA_Ping_Pong_Register_Setup.c
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/soc.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/tistdtypes.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_sysctrl.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_general.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_cpu.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_i2c.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_i2s.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_emif.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_uart.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_spi.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_mmcsd.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_lcdc.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_rtc.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_dma.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_sar.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_usb.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_gpio.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_tim.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_wdt.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_sar.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_error.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_types.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_dma.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_intc.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/stdio.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/linkage.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/stdarg.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/c55xx_csl_3.01/Application_1_Modified/usbstk5505.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/c55xx_csl_3.01/Application_1_Modified/My_I2S_Register.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/c55xx_csl_3.01/Application_1_Modified/Application_1_Modified_Registers.h
+My_DMA_Ping_Pong_Register_Setup.obj: C:/c55xx_csl_3.01/Application_1_Modified/My_DMA_Ping_Pong_Register_Setup.h
+
+../My_DMA_Ping_Pong_Register_Setup.c: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/soc.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/tistdtypes.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_sysctrl.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_general.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_cpu.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_i2c.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_i2s.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_emif.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_uart.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_spi.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_mmcsd.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_lcdc.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_rtc.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_dma.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_sar.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_usb.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_gpio.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_tim.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/cslr_wdt.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_sar.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_error.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_types.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_dma.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/csl_intc.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/stdio.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/linkage.h: 
+C:/Program\ Files/Texas\ Instruments/ccsv4/tools/compiler/c5500/include/stdarg.h: 
+C:/c55xx_csl_3.01/Application_1_Modified/usbstk5505.h: 
+C:/c55xx_csl_3.01/Application_1_Modified/My_I2S_Register.h: 
+C:/c55xx_csl_3.01/Application_1_Modified/Application_1_Modified_Registers.h: 
+C:/c55xx_csl_3.01/Application_1_Modified/My_DMA_Ping_Pong_Register_Setup.h: 
