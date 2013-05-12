@@ -29,41 +29,86 @@
 MEMORY
 {
  PAGE 0:  /* ---- Unified Program/Data Address Space ---- */
+  
+    MMR     (RW) : origin = 0000000h length = 0000c0h /* MMRs */
 
-  MMR    (RWIX): origin = 0x000000, length = 0x0000c0  /* MMRs */
-  DARAM0 (RWIX): origin = 0x0000c0, length = 0x00ff40  /*  64KB - MMRs */
-  SARAM0 (RWIX): origin = 0x010000, length = 0x010000  /*  64KB */
-  SARAM1 (RWIX): origin = 0x020000, length = 0x020000  /* 128KB */
-  SARAM2 (RWIX): origin = 0x040000, length = 0x00FE00  /*  64KB */
-  VECS   (RWIX): origin = 0x04FE00, length = 0x000200  /*  512B */
-  PDROM   (RIX): origin = 0xff8000, length = 0x008000  /*  32KB */
+    DARAM_0 (RW)  : origin = 00000c0h length = 001f40h
+    DARAM_1 (RW)  : origin = 0002000h length = 002000h
+    DARAM_2 (RW)  : origin = 0004000h length = 002000h
+    DARAM_3 (RW)  : origin = 0006000h length = 002000h
+    DARAM   (RW)  : origin = 0008000h length = 008000h
+    
+    SARAM   (RW)  : origin = 0010000h length = 040000h /* on-chip SARAM */
 
+    SAROM_0 (RX)  : origin = 0fe0000h length = 008000h 	/* on-chip ROM 0 */
+    SAROM_1 (RX)  : origin = 0fe8000h length = 008000h 	/* on-chip ROM 1 */
+    SAROM_2 (RX)  : origin = 0ff0000h length = 008000h 	/* on-chip ROM 2 */
+    SAROM_3 (RX)  : origin = 0ff8000h length = 008000h 	/* on-chip ROM 3 */
+    
+    EMIF_CS0 (RW)  : origin = 0050000h  length = 07B0000h   /* mSDR */ 
+	EMIF_CS2 (RW)  : origin = 0800000h  length = 0400000h   /* ASYNC1 : NAND */ 
+	EMIF_CS3 (RW)  : origin = 0C00000h  length = 0200000h   /* ASYNC2 : NAND  */
+	EMIF_CS4 (RW)  : origin = 0E00000h  length = 0100000h   /* ASYNC3 : NOR */
+	EMIF_CS5 (RW)  : origin = 0F00000h  length = 00E0000h   /* ASYNC4 : SRAM */
+	
+	VECS   (RWIX): origin = 0x04FE00, length = 0x000200  /*  512B */
+	  
  PAGE 2:  /* -------- 64K-word I/O Address Space -------- */
 
   IOPORT (RWI) : origin = 0x000000, length = 0x020000
 }
  
 /* SPECIFY THE SECTIONS ALLOCATION INTO MEMORY */
-
 SECTIONS
 {
-   .text     >> SARAM1|SARAM2|SARAM0  /* Code                        */
-
-   /* Both stacks must be on same physical memory page               */
-   .stack    >  DARAM0                /* Primary system stack        */
-   .sysstack >  DARAM0                /* Secondary system stack      */
-
-   .data     >> DARAM0|SARAM0|SARAM1  /* Initialized vars            */
-   .bss      >> DARAM0|SARAM0|SARAM1  /* Global & static vars        */
-   .const    >> DARAM0|SARAM0|SARAM1  /* Constant data               */
-   .sysmem   >  DARAM0|SARAM0|SARAM1  /* Dynamic memory (malloc)     */
-   .switch   >  SARAM2                /* Switch statement tables     */
-   .cinit    >  SARAM2                /* Auto-initialization tables  */
-   .pinit    >  SARAM2                /* Initialization fn tables    */
-   .cio      >  SARAM2                /* C I/O buffers               */
-   .args     >  SARAM2                /* Arguments to main()         */
-
-    vectors  >  VECS                  /* Interrupt vectors           */
-
-   .ioport   >  IOPORT PAGE 2         /* Global & static ioport vars */
+    vectors     : >  VECS                  /* Interrupt vectors           */
+    vector      : > DARAM      ALIGN = 256 
+    .bss        : > DARAM /*, fill = 0 */
+    .stack      : > DARAM  
+    .sysstack   : > DARAM  
+	.sysmem 	: > DARAM 
+    .text       : > SARAM  
+    .data       : > DARAM
+	.cinit 		: > DARAM
+	.const 		: > DARAM
+	.cio		: > DARAM
+	.usect   	: > DARAM
+	.switch     : > DARAM 
+	.emif_cs0   : > EMIF_CS0
+	.emif_cs2   : > EMIF_CS2
+	.emif_cs3   : > EMIF_CS3
+	.emif_cs4   : > EMIF_CS4
+	.emif_cs5   : > EMIF_CS5
+	.ioport   >  IOPORT PAGE 2         /* Global & static ioport vars */
+	
+	BufL      : > DARAM_1
+	BufR      : > DARAM_1
+	cmplxBuf  : > DARAM_1
+	
+	tmpBuf	  : > DARAM_2
+	
+	brBuf	  : > DARAM_3
+	
+	wnd1	  : > DARAM_3
+	wnd2	  : > DARAM_3
+	
+	rfftL     : > DARAM
+	ifftL     : > DARAM
+	rfftR     : > DARAM
+	ifftR     : > DARAM
 }
+
+
+/* Not sure about these addresses  */ 
+_hwafft_br       0x00fefe9c;
+_hwafft_8pts     0x00fefeb0;
+_hwafft_16pts    0x00feff9f;
+_hwafft_32pts    0x00ff00f5;
+_hwafft_64pts    0x00ff03fe;
+_hwafft_128pts   0x00ff0593;
+_hwafft_256pts   0x00ff07a4;
+_hwafft_512pts   0x00ff09a2;
+_hwafft_1024pts  0x00ff0c1c;
+
+
+
