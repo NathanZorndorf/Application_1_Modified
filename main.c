@@ -29,17 +29,6 @@ Int16 DMA_InpR[PING_PONG_SIZE];
 Int16 DMA_OutL[PING_PONG_SIZE];
 Int16 DMA_OutR[PING_PONG_SIZE];
 
-/* Testing Varialbes */ 
-Uint32 DMA_ISR_count = 0;
-Uint32 DMA_ISR_0_Fill_Ping = 0;
-Uint32 DMA_ISR_0_Fill_Pong = 0;
-Uint32 DMA_ISR_1_Fill_Ping = 0;
-Uint32 DMA_ISR_1_Fill_Pong = 0;
-Uint32 DMA_ISR_2_Fill_Ping = 0;
-Uint32 DMA_ISR_2_Fill_Pong = 0;
-Uint32 DMA_ISR_3_Fill_Ping = 0;
-Uint32 DMA_ISR_3_Fill_Pong = 0;
-
 int main(void) {
 	
 	printf("Hello Nathan. Let's get funky. \n");

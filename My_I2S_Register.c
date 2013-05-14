@@ -15,8 +15,8 @@ From the tech ref (page 351): "Each I2S bus has access to one of the four DMA pe
  */
 
 #include <stdio.h>
-#include <data_types.h>
 #include <Application_1_Modified_Registers.h>
+#include <tistdtypes.h>
 
 int My_I2S_Register(void) {
     

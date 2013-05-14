@@ -33,18 +33,20 @@ typedef char            Char;
 typedef char *          String;
 typedef void *          Ptr;
 
+
 #ifndef Uint32 // I added this line to make it compile 
 
 	typedef unsigned long	Uint32;
 	typedef unsigned short	Uint16;
 	typedef unsigned char	Uint8;
 	
-	 /* Signed integer definitions (32bit, 16bit, 8bit) follow... */
+	 // Signed integer definitions (32bit, 16bit, 8bit) follow... 
 	typedef long		Int32;
 	typedef short		Int16;
 	typedef char		Int8;
 
 #endif // I also added this line to make it compile 
+
 
 #endif /* _TI_STD_TYPES */
 

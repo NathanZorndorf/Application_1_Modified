@@ -7,7 +7,6 @@
 #include <math.h> 
 #include <tms320.h>
 #include <Dsplib.h>
-#include <my_types.h>
 #include <usbstk5505.h>
 #include <Application_1_Modified_Registers.h>
 #include <Audio_To_MIDI_Using_DMA.h>
@@ -108,32 +107,31 @@ int Audio_To_MIDI_Using_DMA(void) {
         
         
         // Perform FFT on windowed buffer 
-   		do_fft(BufferL, realL, imagL, 1);
+   		//do_fft(BufferL, realL, imagL, 1);
    		do_fft(BufferR, realR, imagR, 1);
         
-        /*
-        // Process freq. bins from 0Hz to Nyquist frequency 
-		for (i = 0; i < NUM_BINS; i++) {
-		// Perform spectral processing here 
-			// Find magnitude of FFT result for each index 
-			for( j = 0; j < NUM_BINS; j++ )
+        /* Process freq. bins from 0Hz to Nyquist frequency  */
+		/* Perform spectral processing here */ 
+		
+		Peak_Magnitude_Value = sqrt((realR[0])^2 + (imagR[0])^2); // start the search at the first value in the Magnitude plot
+		
+		for( j = 1; j < NUM_BINS; j++ )
+		{
+			PSD_Result[j] = sqrt((realR[j])^2 + (imagR[j])^2); // Convert FFT to magnitude spectrum. Basically Find magnitude of FFT result for each index 
+			
+			if( PSD_Result[j] > Peak_Magnitude_Value ) // Peak search on the magnitude of the FFT to find the fundamental frequency  
 			{
-				PSD_Result[j] = sqrt((realR[j])^2 + (imagR[j])^2);
-			}
-			
-			// Peak search on the magnitude of the FFT to find the fundamental frequency  
-			Peak_Magnitude_Value = PSD_Result[0];
-			
-			for ( f = 1; f < NUM_BINS; f++ ) {
-				if( PSD_Result[f] > Peak_Magnitude_Value )
-				{
-					Peak_Magnitude_Value = PSD_Result[f];
-					Peak_Magnitude_Index = f;
-				} // if
-			} // for 
+				Peak_Magnitude_Value = PSD_Result[f];
+				Peak_Magnitude_Index = f;
+			} // if
 			
 		} // for
-		*/
+		
+		printf("BufferR[256]= %d \n", BufferR[256]);
+		printf("realR[256] 	= %d \n", realR[256]);
+		printf("PSD_Result[256] 	 = %d \n", PSD_Result[256]);
+		printf("Peak_Magnitude_Value = %d \n", Peak_Magnitude_Value);
+		printf("Peak_Magnitude_Index = %d \n\n", Peak_Magnitude_Index);
 		
 		/*
 		// Complete symmetric frequencies (since audio data are real) 
@@ -212,7 +210,7 @@ void do_fft(Int16 *real_data, Int16 *fft_real, Int16 *fft_imag, Uint16 scale)
 
 	/* Perform FFT */
 	if (scale) {
-		data_selection = hwafft_512pts(bitrev_data, temp_data, FFT_FLAG, SCALE_FLAG); // for hwafft_#pts, # = 2*HOP_SIZE 
+		data_selection = hwafft_512pts(bitrev_data, temp_data, FFT_FLAG, SCALE_FLAG); // hwafft_#pts, where # = 2*HOP_SIZE 
 	} 
 	else {
 		data_selection = hwafft_512pts(bitrev_data, temp_data, FFT_FLAG, NOSCALE_FLAG);
