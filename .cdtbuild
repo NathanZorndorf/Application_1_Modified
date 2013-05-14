@@ -64,7 +64,7 @@
 <resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_Straight_Through.c" name="Audio_Straight_Through.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_Straight_Through.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_Straight_Through.c">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_Straight_Through.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="Audio_To_MIDI_Using_DMA.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_To_MIDI_Using_DMA.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA.c">
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="Audio_To_MIDI_Using_DMA.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_To_MIDI_Using_DMA.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA.c">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
 <resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_UART.c" name="My_UART.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_UART.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_UART.c">
@@ -102,6 +102,14 @@
 </resourceConfiguration>
 <resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/CSLc55x5h.lib" name="CSLc55x5h.lib" rcbsApplicability="disable" resourcePath="/Application_1_Modified/CSLc55x5h.lib" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/CSLc55x5h.lib">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/CSLc55x5h.lib" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/vector.asm" name="vector.asm" rcbsApplicability="disable" resourcePath="/Application_1_Modified/vector.asm" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/vector.asm">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/vector.asm" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877">
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE.874095335" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE.algebraic" valueType="enumerated"/>
+</tool>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_To_MIDI_Using_DMA_and_HWAFFT.c" name="Audio_To_MIDI_Using_DMA_and_HWAFFT.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_To_MIDI_Using_DMA_and_HWAFFT.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA_and_HWAFFT.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA_and_HWAFFT.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
 </configuration>
 <configuration artifactExtension="out" artifactName="Application_1_Modified" description="" id="com.ti.ccstudio.buildDefinitions.C5500.Release.256639163" name="Release" parent="com.ti.ccstudio.buildDefinitions.C5500.Release">

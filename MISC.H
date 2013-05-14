@@ -1,4 +1,4 @@
-/*
+/********************************************************************************************
  * Copyright (C) 2013 Texas Instruments Incorporated - http://www.ti.com/ 
  * 
  * 
@@ -29,26 +29,17 @@
  *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
  *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
  *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
+ *********************************************************************************************
 */
 
 /***********************************************************/
 /* Version 2.30.00                                         */
 /***********************************************************/
-#ifndef _TMS320
-#define _TMS320
- 
-typedef unsigned int   uint;
-typedef unsigned short ushort;  
-#define PASS -1
+#ifndef _MISC
+#define _MISC
 
-
-  typedef short DATA;
-  typedef long LDATA;
-  #define ABSVAL abs
-  #define SHIFT15 >>15
-  #define SHIFT1  /2
-  #define ROUND 0x400
-  #define DIV2	>>1
+#define PI	  3.14159265358979323846 // PI value
+#define CONV	  32767.999999	   	// Q15-> float conversion value = 2^15- 2^1-15 
 
 #endif
+

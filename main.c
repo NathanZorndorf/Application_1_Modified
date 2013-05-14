@@ -16,7 +16,7 @@
 #include <My_I2S_Register.h>
 #include <My_DMA_Ping_Pong_Register_Setup.h>
 // #include <Audio_Straight_Through_Using_DMA.h>
-#include <Audio_To_MIDI_Using_DMA.h>
+#include <Audio_To_MIDI_Using_DMA_and_CFFT.h>
 
 // Buffers for DMA in/out and overlap-add 
 Int16 PingPongFlagInL;
@@ -46,7 +46,7 @@ int main(void) {
 	
 	My_I2S_Register();
 	
-	Audio_To_MIDI_Using_DMA();
+	Audio_To_MIDI_Using_DMA_and_CFFT();
 	
 
  	return(1);

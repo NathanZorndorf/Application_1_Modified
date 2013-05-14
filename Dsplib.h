@@ -1,18 +1,5 @@
-/*****************************************************************************/
-/*                                                                           */
-/* FILENAME                                                                  */
-/* 	 dsplib.h                                                                */
-/*                                                                           */
-/* DESCRIPTION                                                               */
-/*   Header file for DSPLIB library on the TMS320VC5505 USB Stick.           */
-/*                                                                           */
-/*****************************************************************************/
-/***********************************************************/
-/* Version 2.30.00                                         */
-/***********************************************************/
 /*
- *
- * Copyright (C) 2010 Texas Instruments Incorporated - http://www.ti.com/ 
+ * Copyright (C) 2013 Texas Instruments Incorporated - http://www.ti.com/ 
  * 
  * 
  *  Redistribution and use in source and binary forms, with or without 
@@ -45,11 +32,13 @@
  *
 */
 
-
+/***********************************************************/
+/* Version 2.30.00                                         */
+/***********************************************************/
 #ifndef _DSPLIB
 #define _DSPLIB
 
-#include "tms320.h"
+#include <tms320.h>
 
 /* 32-bit fft */
 
@@ -57,6 +46,10 @@ void cfft32_SCALE(LDATA *x, ushort nx);
 void cfft32_NOSCALE(LDATA *x, ushort nx);
 void cifft32_SCALE (LDATA *x,  ushort nx);
 void cifft32_NOSCALE (LDATA *x,  ushort nx);
+
+/* 32-bit bit reversal */
+
+void cbrev32 (LDATA *x, LDATA *y, ushort n);
 
 
 /* 16-bit fft */
@@ -68,6 +61,8 @@ void cifft_NOSCALE (DATA *x,  ushort nx);
 
 void unpack(DATA *x, ushort nx);
 void unpacki(DATA *x, ushort nx);
+void unpack32(LDATA *x, ushort nx);
+void unpacki32(LDATA *x, ushort nx);
 /* void rfft(DATA *x, ushort nx, ushort scale); */
 /* void rifft(DATA *x,  ushort nx, ushort scale); */
 
@@ -209,11 +204,3 @@ void rand16init(void);
     )
 
 #endif
-
-/* ------------------------------------------------------------------------ *
- *                                                                          *
- *  End of dsplib.h                                                         *
- *                                                                          *
- * ------------------------------------------------------------------------ */
-
-
