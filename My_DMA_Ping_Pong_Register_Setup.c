@@ -4,8 +4,6 @@
  */
  
 #include <soc.h>
-#include <csl_sar.h>
-#include <csl_dma.h>
 #include <csl_intc.h>
 #include <stdio.h>
 #include <usbstk5505.h>
@@ -15,16 +13,6 @@
 
 /* Interrupt vector start address */  
 extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED 
-/* Test Variables */
-extern Uint32 DMA_ISR_count;
-extern Uint32 DMA_ISR_0_Fill_Ping;
-extern Uint32 DMA_ISR_0_Fill_Pong;
-extern Uint32 DMA_ISR_1_Fill_Ping;
-extern Uint32 DMA_ISR_1_Fill_Pong;
-extern Uint32 DMA_ISR_2_Fill_Ping;
-extern Uint32 DMA_ISR_2_Fill_Pong;
-extern Uint32 DMA_ISR_3_Fill_Ping;
-extern Uint32 DMA_ISR_3_Fill_Pong;
 
  int My_DMA_Ping_Pong_Register_Setup(void) {
  	
@@ -44,6 +32,7 @@ extern Uint32 DMA_ISR_3_Fill_Pong;
 	 IRQ_globalEnable(); // It enables the interrupt globally by enabling INTM bit and also return the previous mask value for INTM bit
 	 printf("DMA INTERRUPTS SETUP END!!\n");
 	 // ------------------------------------------------------------ /
+ 	
  	
  	printf("DMA SETUP BEGIN!!\n");
  		 
@@ -136,8 +125,6 @@ extern Uint32 DMA_ISR_3_Fill_Pong;
 {
 	Uint16 register_value1, register_value2;
 	
-	DMA_ISR_count++;
-	
 	/* Clear CPU DMA interrupt */
 	register_value1 = IFR0;
 	IFR0 = register_value1;
@@ -150,19 +137,15 @@ extern Uint32 DMA_ISR_3_Fill_Pong;
     {
     	register_value2 = DMA1_CH0_TCR2;
     	if (register_value2 & 0x0002) { 
-    		DMA_ISR_0_Fill_Ping++;
     		PingPongFlagInL = 1; // Last Transfer complete was Pong - Filling Ping
     	} else {
-    		DMA_ISR_0_Fill_Pong++;
     		PingPongFlagInL = 0; // Last Transfer complete was Ping - Filling Pong
     	}
     	
     	register_value2 = DMA1_CH1_TCR2;
     	if (register_value2 & 0x0002) {
-    		DMA_ISR_1_Fill_Ping++;
     		PingPongFlagInR = 1; // Last Transfer complete was Pong - Filling Ping
     	} else {
-    		DMA_ISR_1_Fill_Pong++;
     		PingPongFlagInR = 0; // Last Transfer complete was Ping - Filling Pong
     	}
     		    
@@ -175,19 +158,15 @@ extern Uint32 DMA_ISR_3_Fill_Pong;
     { 
     	register_value2 = DMA1_CH2_TCR2;
     	if (register_value2 & 0x0002) {
-    		DMA_ISR_2_Fill_Ping++;
     		PingPongFlagOutL = 1;
     	} else {
-    		DMA_ISR_2_Fill_Pong++;
     		PingPongFlagOutL = 0;
     	}
     	
     	register_value2 = DMA1_CH3_TCR2;
     	if (register_value2 & 0x0002) {
-    		DMA_ISR_3_Fill_Ping++;
     		PingPongFlagOutR = 1;
     	} else {
-    		DMA_ISR_3_Fill_Pong++;
     		PingPongFlagOutR = 0;
     	}
     	  	

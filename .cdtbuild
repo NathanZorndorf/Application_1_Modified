@@ -4,84 +4,104 @@
 <ManagedProjectBuildInfo>
 <project id="Application_1_Modified.com.ti.ccstudio.buildDefinitions.C5500.ProjectType.909656384" name="C5500" projectType="com.ti.ccstudio.buildDefinitions.C5500.ProjectType">
 <configuration artifactExtension="out" artifactName="Application_1_Modified" description="" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612" name="Debug" parent="com.ti.ccstudio.buildDefinitions.C5500.Debug">
-<toolChain id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.DebugToolchain.775374818" name="TI Code Generation Tools" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.DebugToolchain" targetTool="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.457881061">
-<option id="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.1659508884" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS" valueType="stringList">
+<toolChain id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.DebugToolchain.609982247" name="TI Code Generation Tools" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.DebugToolchain" targetTool="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699">
+<option id="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS.871037042" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_TAGS" valueType="stringList">
 <listOptionValue builtIn="false" value="DEVICE_CONFIGURATION_ID=TMS320C55XX.TMS320C5535"/>
 <listOptionValue builtIn="false" value="DEVICE_ENDIANNESS=big"/>
 <listOptionValue builtIn="false" value="OUTPUT_FORMAT=COFF"/>
 <listOptionValue builtIn="false" value="CCS_MBS_VERSION=4.2.4"/>
 <listOptionValue builtIn="false" value="LINKER_COMMAND_FILE=lnkx.cmd"/>
-<listOptionValue builtIn="false" value="RUNTIME_SUPPORT_LIBRARY=rts55h.lib"/>
+<listOptionValue builtIn="false" value="RUNTIME_SUPPORT_LIBRARY=C:/Program Files/Texas Instruments/ccsv4/tools/compiler/c5500/lib/rts55h.lib"/>
 <listOptionValue builtIn="false" value="OUTPUT_TYPE=executable"/>
 </option>
-<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.163052602" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION" value="4.3.8" valueType="string"/>
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug">
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.DIAG_WARNING.1554913272" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.DIAG_WARNING" valueType="stringList">
+<option id="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION.1712039014" superClass="com.ti.ccstudio.buildDefinitions.core.OPT_CODEGEN_VERSION" value="4.3.8" valueType="string"/>
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug">
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.DIAG_WARNING.1655312002" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.DIAG_WARNING" valueType="stringList">
 <listOptionValue builtIn="false" value="225"/>
 </option>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.MEMORY_MODEL.1844225482" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.MEMORY_MODEL" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.MEMORY_MODEL.huge" valueType="enumerated"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.PTRDIFF_SIZE.137385817" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.PTRDIFF_SIZE" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.PTRDIFF_SIZE.32" valueType="enumerated"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SILICON_VERSION.42337256" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SILICON_VERSION" value="5515" valueType="string"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.INCLUDE_PATH.650493964" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.INCLUDE_PATH" valueType="includePath">
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.MEMORY_MODEL.531003525" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.MEMORY_MODEL" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.MEMORY_MODEL.huge" valueType="enumerated"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.PTRDIFF_SIZE.642065093" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.PTRDIFF_SIZE" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.PTRDIFF_SIZE.32" valueType="enumerated"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SILICON_VERSION.1317554651" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SILICON_VERSION" value="5515" valueType="string"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.INCLUDE_PATH.829052869" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.INCLUDE_PATH" valueType="includePath">
+<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
 <listOptionValue builtIn="false" value="&quot;C:\c55xx_csl_3.01\Application_1_Modified&quot;"/>
 <listOptionValue builtIn="false" value="&quot;C:\c55xx_csl_3.01\inc&quot;"/>
 <listOptionValue builtIn="false" value="&quot;C:\Program Files\Texas Instruments\ccsv4\tools\compiler\c5500\include&quot;"/>
-<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
 </option>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SAT_REASSOC.1717283002" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SAT_REASSOC" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SAT_REASSOC.off" valueType="enumerated"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.FP_REASSOC.1805908269" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.FP_REASSOC" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.FP_REASSOC.off" valueType="enumerated"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.NO_BAD_ALIASES.396446896" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.NO_BAD_ALIASES" value="true" valueType="boolean"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE.1493264431" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE.mnemonic" valueType="enumerated"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SAT_REASSOC.922159187" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SAT_REASSOC" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.SAT_REASSOC.off" valueType="enumerated"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.FP_REASSOC.1645910095" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.FP_REASSOC" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.FP_REASSOC.off" valueType="enumerated"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.NO_BAD_ALIASES.494853259" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.NO_BAD_ALIASES" value="true" valueType="boolean"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE.1668700514" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE" value="com.ti.ccstudio.buildDefinitions.C5500_4.3.compilerID.ASM_SOURCE.mnemonic" valueType="enumerated"/>
 </tool>
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.457881061" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug">
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.OUTPUT_FILE.643593390" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.OUTPUT_FILE" value="&quot;Application_1_Modified.out&quot;" valueType="string"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.MAP_FILE.1332839191" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.MAP_FILE" value="&quot;Application_1_Modified.map&quot;" valueType="string"/>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.LIBRARY.2063960351" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.LIBRARY" valueType="libs">
-<listOptionValue builtIn="false" value="&quot;C:\Program Files\Texas Instruments\ccsv4\tools\compiler\c5500\lib\55xdsp.lib&quot;"/>
-<listOptionValue builtIn="false" value="&quot;rts55h.lib&quot;"/>
-</option>
-<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.SEARCH_PATH.2076331724" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.SEARCH_PATH" valueType="stringList">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug">
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.OUTPUT_FILE.87526826" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.OUTPUT_FILE" value="&quot;Application_1_Modified.out&quot;" valueType="string"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.MAP_FILE.1023977510" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.MAP_FILE" value="&quot;Application_1_Modified.map&quot;" valueType="string"/>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.SEARCH_PATH.37015810" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.SEARCH_PATH" valueType="stringList">
 <listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/lib&quot;"/>
 <listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
+</option>
+<option id="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.LIBRARY.1638406076" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.linkerID.LIBRARY" valueType="libs">
+<listOptionValue builtIn="false" value="&quot;C:/Program Files/Texas Instruments/ccsv4/tools/compiler/c5500/lib/rts55h.lib&quot;"/>
 </option>
 </tool>
 <macros expandEnvironmentMacros="true"/>
 </toolChain>
-<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/main.c" name="main.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/main.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/main.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/main.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/DMA_Ping_Pong.c" name="DMA_Ping_Pong.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/DMA_Ping_Pong.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/DMA_Ping_Pong.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/DMA_Ping_Pong.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/DMA_Ping_Pong.c" name="DMA_Ping_Pong.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/DMA_Ping_Pong.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/DMA_Ping_Pong.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/DMA_Ping_Pong.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/audio_to_midi.c" name="audio_to_midi.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/audio_to_midi.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/audio_to_midi.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/audio_to_midi.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/I2C_Test.c" name="I2C_Test.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/I2C_Test.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/I2C_Test.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/I2C_Test.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/csl_irqplug.asm" name="csl_irqplug.asm" rcbsApplicability="disable" resourcePath="/Application_1_Modified/csl_irqplug.asm" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/csl_irqplug.asm">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/csl_irqplug.asm" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/audio_to_midi.c" name="audio_to_midi.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/audio_to_midi.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/audio_to_midi.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/audio_to_midi.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_DMA_Ping_Pong_Register.c" name="My_DMA_Ping_Pong_Register.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_DMA_Ping_Pong_Register.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_DMA_Ping_Pong_Register.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_DMA_Ping_Pong_Register.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/csl_irqplug.asm" name="csl_irqplug.asm" rcbsApplicability="disable" resourcePath="/Application_1_Modified/csl_irqplug.asm" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/csl_irqplug.asm">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/csl_irqplug.asm" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_DMA_Ping_Pong.c" name="My_DMA_Ping_Pong.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_DMA_Ping_Pong.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_DMA_Ping_Pong.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_DMA_Ping_Pong.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_DMA_Ping_Pong_Register.c" name="My_DMA_Ping_Pong_Register.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_DMA_Ping_Pong_Register.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_DMA_Ping_Pong_Register.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_DMA_Ping_Pong_Register.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_Straight_Through.c" name="Audio_Straight_Through.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_Straight_Through.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_Straight_Through.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_Straight_Through.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_DMA_Ping_Pong.c" name="My_DMA_Ping_Pong.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_DMA_Ping_Pong.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_DMA_Ping_Pong.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_DMA_Ping_Pong.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="Audio_To_MIDI_Using_DMA.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_To_MIDI_Using_DMA.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_Straight_Through.c" name="Audio_Straight_Through.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_Straight_Through.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/Audio_Straight_Through.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/Audio_Straight_Through.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_UART.c" name="My_UART.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_UART.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_UART.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_UART.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="Audio_To_MIDI_Using_DMA.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_To_MIDI_Using_DMA.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/Audio_To_MIDI_Using_DMA.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/Audio_To_MIDI_Using_DMA.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_Straight_Through_Using_DMA.c" name="Audio_Straight_Through_Using_DMA.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_Straight_Through_Using_DMA.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_Straight_Through_Using_DMA.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/Audio_Straight_Through_Using_DMA.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_UART.c" name="My_UART.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_UART.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_UART.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_UART.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_I2S.c" name="My_I2S.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_I2S.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_I2S.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/My_I2S.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/Audio_Straight_Through_Using_DMA.c" name="Audio_Straight_Through_Using_DMA.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/Audio_Straight_Through_Using_DMA.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/Audio_Straight_Through_Using_DMA.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/Audio_Straight_Through_Using_DMA.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/lnkx.cmd" name="lnkx.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/lnkx.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/lnkx.cmd">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/lnkx.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/My_I2S.c" name="My_I2S.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/My_I2S.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_I2S.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865./Application_1_Modified/My_I2S.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.156094865"/>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/link.cmd" name="link.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/link.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/link.cmd">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/link.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/PLL.c" name="PLL.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/PLL.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/PLL.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/PLL.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/usbstk5505_led.c" name="usbstk5505_led.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/usbstk5505_led.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/usbstk5505_led.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/usbstk5505_led.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/aic_i2c.c" name="aic_i2c.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/aic_i2c.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/aic_i2c.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/aic_i2c.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/stereo.c" name="stereo.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/stereo.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/stereo.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/stereo.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/usbstk5505_gpio.c" name="usbstk5505_gpio.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/usbstk5505_gpio.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/usbstk5505_gpio.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877./Application_1_Modified/usbstk5505_gpio.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1013888877"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/55xdsph.lib" name="55xdsph.lib" rcbsApplicability="disable" resourcePath="/Application_1_Modified/55xdsph.lib" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/55xdsph.lib">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/55xdsph.lib" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/CSLc55x5h.lib" name="CSLc55x5h.lib" rcbsApplicability="disable" resourcePath="/Application_1_Modified/CSLc55x5h.lib" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/CSLc55x5h.lib">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699./Application_1_Modified/CSLc55x5h.lib" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.635013699"/>
 </resourceConfiguration>
 </configuration>
 <configuration artifactExtension="out" artifactName="Application_1_Modified" description="" id="com.ti.ccstudio.buildDefinitions.C5500.Release.256639163" name="Release" parent="com.ti.ccstudio.buildDefinitions.C5500.Release">
@@ -121,6 +141,9 @@
 </toolChain>
 <resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Release.256639163./Application_1_Modified/lnkx.cmd" name="lnkx.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/lnkx.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393./Application_1_Modified/lnkx.cmd">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393./Application_1_Modified/lnkx.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Release.256639163./Application_1_Modified/link.cmd" name="link.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/link.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393./Application_1_Modified/link.cmd">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393./Application_1_Modified/link.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393"/>
 </resourceConfiguration>
 </configuration>
 <configuration artifactExtension="out" artifactName="Application_1_Modified" description="" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1833373681" name="Debug_rts55_16" parent="com.ti.ccstudio.buildDefinitions.C5500.Debug">
@@ -173,9 +196,6 @@
 <resourceConfiguration exclude="false" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1833373681./Application_1_Modified/DMA_Ping_Pong.c" name="DMA_Ping_Pong.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/DMA_Ping_Pong.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141./Application_1_Modified/DMA_Ping_Pong.c">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141./Application_1_Modified/DMA_Ping_Pong.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141"/>
 </resourceConfiguration>
-<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1833373681./Application_1_Modified/I2C_Test.c" name="I2C_Test.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/I2C_Test.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141./Application_1_Modified/I2C_Test.c">
-<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141./Application_1_Modified/I2C_Test.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141"/>
-</resourceConfiguration>
 <resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1833373681./Application_1_Modified/audio_to_midi.c" name="audio_to_midi.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/audio_to_midi.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141./Application_1_Modified/audio_to_midi.c">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141./Application_1_Modified/audio_to_midi.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.320995141"/>
 </resourceConfiguration>
@@ -202,6 +222,9 @@
 </resourceConfiguration>
 <resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1833373681./Application_1_Modified/lnkx.cmd" name="lnkx.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/lnkx.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1872476101./Application_1_Modified/lnkx.cmd">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1872476101./Application_1_Modified/lnkx.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1872476101"/>
+</resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1833373681./Application_1_Modified/link.cmd" name="link.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/link.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1872476101./Application_1_Modified/link.cmd">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1872476101./Application_1_Modified/link.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1872476101"/>
 </resourceConfiguration>
 </configuration>
 <macros/>

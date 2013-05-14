@@ -20,13 +20,13 @@
 int My_I2C(void) {
 	
 	// Variable declaration 
- 	CSL_Status      status;
-	CSL_I2cSetup	configI2C;
+ 	//CSL_Status      status;
+	//CSL_I2cSetup	configI2C;
 
 	// ------------------------ I2C Setup ---------------------------- //
 	printf("I2C SETUP BEGIN!!\n");
 
-	
+	/*	
 	// Initialize I2C module instance //
 	status = I2C_init(CSL_I2C0); // CSL_I2C0 means 0 = instance number 
 	if(status != CSL_SOK) { printf("I2C Init Failed!!\n"); return(status); }
@@ -43,8 +43,16 @@ int My_I2C(void) {
 
 	status = I2C_setup(&configI2C); if(status != CSL_SOK) { printf("I2C Setup Failed!!\n"); return(status); }
 	
-	asm(" bclr XF"); // WTF THIS DO??? - I think it clears the register corresponding to the XF testpoint pin on the dev board. 
+	asm(" bclr XF"); // - I think it clears the register corresponding to the XF LED on the board.. 
+	*/
 	
+	I2C_MDR = 0x0400;             // Reset I2C
+    I2C_PSC   = 7;               // Config prescaler for 12MHz
+    I2C_CLKL  = 0x026C;               // Config clk LOW for 20kHz
+    I2C_CLKH  = 0x026C;               // Config clk HIGH for 20kHz
+    
+    I2C_MDR   = 0x0420   ;        // Release from reset; Master, Transmitter, 7-bit address
+    
 	printf("I2C SETUP END!!\n\n");
     // --------------------------------------------------------------- //
     

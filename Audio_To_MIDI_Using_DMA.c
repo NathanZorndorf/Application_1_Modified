@@ -110,8 +110,8 @@ int Audio_To_MIDI_Using_DMA(void) {
    		//do_fft(BufferL, realL, imagL, 1);
    		do_fft(BufferR, realR, imagR, 1);
         
-        /* Process freq. bins from 0Hz to Nyquist frequency  */
-		/* Perform spectral processing here */ 
+        // Process freq. bins from 0Hz to Nyquist frequency  
+		// Perform spectral processing here 
 		
 		Peak_Magnitude_Value = sqrt((realR[0])^2 + (imagR[0])^2); // start the search at the first value in the Magnitude plot
 		
@@ -127,11 +127,13 @@ int Audio_To_MIDI_Using_DMA(void) {
 			
 		} // for
 		
+		/*
 		printf("BufferR[256]= %d \n", BufferR[256]);
 		printf("realR[256] 	= %d \n", realR[256]);
 		printf("PSD_Result[256] 	 = %d \n", PSD_Result[256]);
 		printf("Peak_Magnitude_Value = %d \n", Peak_Magnitude_Value);
 		printf("Peak_Magnitude_Index = %d \n\n", Peak_Magnitude_Index);
+		*/
 		
 		/*
 		// Complete symmetric frequencies (since audio data are real) 

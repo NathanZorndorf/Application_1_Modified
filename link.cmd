@@ -5,7 +5,7 @@ MEMORY
     /*DARAM (RW)    : origin = 00000c0h length = 00ff40h*/  /* on-chip DARAM */
     DARAM_0 (RW)  : origin = 00000c0h length = 001f40h
     DARAM_1 (RW)  : origin = 0002000h length = 004000h
-    /*DARAM_2 (RW)  : origin = 0004000h length = 002000h */
+    /* DARAM_2 (RW)  : origin = 0004000h length = 002000h */
     DARAM_3 (RW)  : origin = 0006000h length = 002000h
     DARAM   (RW)  : origin = 0008000h length = 008000h
     
@@ -55,17 +55,18 @@ SECTIONS
 	cmplxBuf  : > DARAM_1
 	PSD		  : > DARAM_1
 	
+	rfftL     : > DARAM_1
+	ifftL     : > DARAM_1
+	rfftR     : > DARAM_1
+	ifftR     : > DARAM_1
+	
 	tmpBuf	  : > DARAM_1
 	
 	brBuf	  : > DARAM_1
 	
 	wnd1	  : > DARAM_3
 	wnd2	  : > DARAM_3
-	
-	rfftL     : > DARAM_1
-	ifftL     : > DARAM_1
-	rfftR     : > DARAM_1
-	ifftR     : > DARAM_1
+
 }
 
 
