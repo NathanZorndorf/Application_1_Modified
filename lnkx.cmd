@@ -50,9 +50,9 @@ SECTIONS
 	/* .data:twiddle    : > DARAM_0 ALIGN = 2048 */
 	/* .fftcode         : > SARAM */
 	
+	cmplxBuf  : > DARAM_1
 	BufL      : > DARAM_1
 	BufR      : > DARAM_1
-	cmplxBuf  : > DARAM_1
 	PSD		  : > DARAM_1
 	
 	tmpBuf	  : > DARAM_1

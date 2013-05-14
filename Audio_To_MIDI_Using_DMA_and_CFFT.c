@@ -47,8 +47,6 @@ LDATA temporary_buffer[FFT_LENGTH];
 /* --- Special buffers required for CFFT ---*/
 #pragma DATA_SECTION(complex_data,"cmplxBuf");
 LDATA complex_data[FFT_LENGTH];
-#pragma DATA_SECTION(bitrev_data,"brBuf");
-LDATA bitrev_data[FFT_LENGTH];
 /* -------------------------------------------*/
 
 int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
@@ -119,30 +117,32 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 			*(complex_data + i) = ( (Int32) (*(BufferR + i)) ) << 16; // Shift Left 16 Bits. 
 		}
 		*/
+		/*
 		for (i = 0; i < FFT_LENGTH; i++) 
 		{
 			complex_data[i] = BufferR[i];
 		}
-		/*
-		for (i = 0; i < FFT_LENGTH; i++) 
+		*/
+		
+		for (i = 0; i < HOP_SIZE; i++) 
 		{
 			complex_data[2*i] = BufferR[i]; // place audio data (Real) in each even index of complex_data
 			complex_data[2*i+1] = 0;		// place a 0 (Imag) in each odd index of complex_data
 		}
-		*/
+		
 			
 		/* Perform FFT */
 		//cfft32(complex_data, HOP_SIZE, SCALE);
 		cfft32_SCALE(complex_data, HOP_SIZE); 
 
 		/* Perform bit-reversing */
-		cbrev32(complex_data, bitrev_data, HOP_SIZE);
+		cbrev32(complex_data, complex_data, HOP_SIZE);
 
 
 		/* Extract real and imaginary parts */
 		for (i = 0; i < FFT_LENGTH; i++) {
-			*(realR + i) = (Int16)((*(bitrev_data + i)) >> 16);
-			*(imagR + i) = (Int16)((*(bitrev_data + i)) & 0x0000FFFF);
+			*(realR + i) = (Int16)((*(complex_data + i)) >> 16);
+			*(imagR + i) = (Int16)((*(complex_data + i)) & 0x0000FFFF);
 		}
 	
 	
