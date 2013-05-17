@@ -3,7 +3,6 @@
  *   Description: UART Initialization and Test 
  */
 
-//#include <usbstk5505.h>
 #include <stdio.h>
 #include <csl_general.h>
 #include <csl_uart.h>
@@ -16,11 +15,11 @@
 #define ONE_HALF_SECOND	500000 // 500,000 microseconds in 0.5 seconds
 
 // MIDI #define's 
-#define NOTE_ON		0x90 // Note ON  for Channel 0 - This should be the first byte in a Note ON  sequence. 
-#define NOTE_OFF 	0x80 // Note OFF for Channel 0 - This should be the first byte in a Note OFF sequence. 
-#define NOTE_VALUE	0x60
-#define NOTE_ON_VELOCITY	0x64 // Velocity = 100 (Range is 1 - 127) - This should be the third byte in a Note ON  sequence. 
-#define NOTE_OFF_VELOCITY	0x7F // Velocity = 127 (Range is 1 - 127) - This should be the third byte in a Note OFF sequence. 
+#define NOTE_ON		144  // 0x90 - Note ON  for Channel 0 - This should be the first byte in a Note ON  sequence. 
+#define NOTE_OFF 	128  // 0x80 - Note OFF for Channel 0 - This should be the first byte in a Note OFF sequence. 
+#define NOTE_VALUE	96   // 0x60 - 
+#define NOTE_ON_VELOCITY	100 // 0x64 - Velocity = 100 (Range is 1 - 127) - This should be the third byte in a Note ON  sequence. 
+#define NOTE_OFF_VELOCITY	127 // 0x7F - Velocity = 127 (Range is 1 - 127) - This should be the third byte in a Note OFF sequence. 
 
 int My_UART(void){
 	
@@ -49,6 +48,7 @@ int My_UART(void){
 			/* Input clock freq in MHz */
 		    100000000,
 			/* Baud rate */
+		    /*31250, */
 		    31250,
 			/* Word length of 8 */
 		    CSL_UART_WORD8,
@@ -57,7 +57,7 @@ int My_UART(void){
 			/* Disable the parity */
 		    CSL_UART_DISABLE_PARITY,
 			/* Enable trigger 14 fifo */
-			CSL_UART_FIFO_DMA1_DISABLE_TRIG01, // - does not matter, choose 1 anyway.
+			CSL_UART_FIFO_DISABLE, // - ??
 			/* Loop Back enable */
 		    CSL_UART_NO_LOOPBACK,
 			/* No auto flow control*/
@@ -94,17 +94,28 @@ int My_UART(void){
 	// Repeatedly output MIDI ON and MIDI OFF 
 	while(1)
 	{
-		pBuf[0] = NOTE_ON;
-		pBuf[1] = NOTE_VALUE;
-		pBuf[2] = NOTE_ON_VELOCITY;
+		pBuf[0] 	= 0x90;
+		pBuf[1]	 	= 0x60;
+		pBuf[2] 	= 0x64;
+		//status = UART_write(hUart, pBuf, COUNT, TIMEOUT_VALUE);
+		//status = UART_fputs(hUart, pBuf, TIMEOUT_VALUE);
+		status = UART_fputc(hUart, pBuf[0], TIMEOUT_VALUE);
+		status = UART_fputc(hUart, pBuf[1], TIMEOUT_VALUE);
+		status = UART_fputc(hUart, pBuf[2], TIMEOUT_VALUE);
+		printf("Sent note ON message viat UART.\n\n");
 		USBSTK5505_waitusec(ONE_HALF_SECOND); 
-		status = UART_write(hUart, pBuf, COUNT, TIMEOUT_VALUE);
+				
+		pBuf[0] 	= 0x80;
+		pBuf[1] 	= 0x60;
+		pBuf[2] 	= 0x7F;
+		//status = UART_write(hUart, pBuf, COUNT, TIMEOUT_VALUE);
+		//status = UART_fputs(hUart, pBuf, TIMEOUT_VALUE);
+		status = UART_fputc(hUart, pBuf[0], TIMEOUT_VALUE);
+		status = UART_fputc(hUart, pBuf[1], TIMEOUT_VALUE);
+		status = UART_fputc(hUart, pBuf[2], TIMEOUT_VALUE);
+		printf("Sent note OFF message viat UART.\n\n");
+		USBSTK5505_waitusec(ONE_HALF_SECOND);
 		
-		pBuf[0] = NOTE_OFF;
-		pBuf[1] = NOTE_VALUE;
-		pBuf[2] = NOTE_OFF_VELOCITY;
-		USBSTK5505_waitusec(ONE_HALF_SECOND); 
-		status = UART_write(hUart, pBuf, COUNT, TIMEOUT_VALUE);
 	}
 
 }

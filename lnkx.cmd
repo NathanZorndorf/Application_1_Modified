@@ -54,6 +54,7 @@ SECTIONS
 	BufL      : > DARAM_1
 	BufR      : > DARAM_1
 	PSD		  : > DARAM_1
+	PSD_sqrt  : > DARAM_1
 	
 	tmpBuf	  : > DARAM_1
 	

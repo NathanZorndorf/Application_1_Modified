@@ -15,6 +15,7 @@
 #include <My_I2S.h>
 #include <My_I2S_Register.h>
 #include <My_DMA_Ping_Pong_Register_Setup.h>
+#include <My_UART.h>
 // #include <Audio_Straight_Through_Using_DMA.h>
 #include <Audio_To_MIDI_Using_DMA_and_CFFT.h>
 
@@ -45,6 +46,8 @@ int main(void) {
 	My_DMA_Ping_Pong_Register_Setup();
 	
 	My_I2S_Register();
+	
+	//My_UART();
 	
 	Audio_To_MIDI_Using_DMA_and_CFFT();
 	
