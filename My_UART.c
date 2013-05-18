@@ -27,7 +27,9 @@ int My_UART(void){
 	Int16           status;  // For checking if functions ran successfully. 
 	CSL_UartObj 	uartObj; // Used to create the UART instance handle. 
 	CSL_UartHandle	hUart;	 // The UART instance handle. 
+	/*
 	char pBuf[3];  // UART TX Buffer - char is 1 byte - ?
+	*/
 	
 	CSL_UartConfig	Config = 
 		{
@@ -66,10 +68,11 @@ int My_UART(void){
 			CSL_UART_NO_RTS , // - does not matter because AFE is OFF, choose NO_RST anyway. 
 		};
 
+	/*
 	// Initialize clock
 	My_PLL();
 	printf("PLL Initialized to 100 MHz!\n");
-	 
+	 */
 	 
     // Initialize UART
 	status = UART_init(&uartObj, CSL_UART_INST_0, UART_POLLED); 
@@ -92,6 +95,7 @@ int My_UART(void){
     */
     	
 	// Repeatedly output MIDI ON and MIDI OFF 
+	/*
 	while(1)
 	{
 		pBuf[0] 	= 0x90;
@@ -117,5 +121,6 @@ int My_UART(void){
 		USBSTK5505_waitusec(ONE_HALF_SECOND);
 		
 	}
-
+	*/ 
+	
 }

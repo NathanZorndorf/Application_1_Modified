@@ -30,6 +30,10 @@ Int16 DMA_InpR[PING_PONG_SIZE];
 Int16 DMA_OutL[PING_PONG_SIZE];
 Int16 DMA_OutR[PING_PONG_SIZE];
 
+// UART (MIDI) variables 
+int Previous_MIDI_Number = 0;
+int Current_MIDI_Number = 0;
+
 int main(void) {
 	
 	printf("Hello Nathan. Let's get funky. \n");
@@ -47,7 +51,7 @@ int main(void) {
 	
 	My_I2S_Register();
 	
-	//My_UART();
+	My_UART();
 	
 	Audio_To_MIDI_Using_DMA_and_CFFT();
 	
