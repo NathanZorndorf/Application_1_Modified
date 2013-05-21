@@ -8,6 +8,7 @@
 #include <csl_uart.h>
 #include <My_PLL.h>
 #include <usbstk5505.h>
+#include <My_UART.h>
 
 // UART #define's
 #define TIMEOUT_VALUE	1000
@@ -21,30 +22,6 @@
 #define NOTE_ON_VELOCITY	100 // 0x64 - Velocity = 100 (Range is 1 - 127) - This should be the third byte in a Note ON  sequence. 
 #define NOTE_OFF_VELOCITY	127 // 0x7F - Velocity = 127 (Range is 1 - 127) - This should be the third byte in a Note OFF sequence. 
 
-int My_UART(void){
-	
-	// UART Variable Declaration 
-	Int16           status;  // For checking if functions ran successfully. 
-	CSL_UartObj 	uartObj; // Used to create the UART instance handle. 
-	CSL_UartHandle	hUart;	 // The UART instance handle. 
-	/*
-	char pBuf[3];  // UART TX Buffer - char is 1 byte - ?
-	*/
-	
-	CSL_UartConfig	Config = 
-		{
-		   /**DLL holds least significant bits of the divisor*/
-		   200,
-		   /**DLH holds most significant bits of the divisor*/
-		   0,
-		   /**LCR controls word length,parity selection,stop bit generation*/
-		   0x0003,
-		   /**FCR controls fifo enable/disable,trigger level selection,dma selection*/
-		   0x0000, 
-		   /** MCR controls autoflow selection,loopback feature,RTS selection   */
-		   0x0000,
-		};
-		
 	CSL_UartSetup uartSetup =
 		{
 			/* Input clock freq in MHz */
@@ -67,6 +44,32 @@ int My_UART(void){
 			/* No RTS */
 			CSL_UART_NO_RTS , // - does not matter because AFE is OFF, choose NO_RST anyway. 
 		};
+		
+int My_UART(void){
+	
+	// UART Variable Declaration 
+	Int16           status;  // For checking if functions ran successfully. 
+	CSL_UartObj 	uartObj; // Used to create the UART instance handle. 
+	CSL_UartHandle	hUart;	 // The UART instance handle. 
+	/*
+	char pBuf[3];  // UART TX Buffer - char is 1 byte - ?
+	*/
+	
+	/*
+	CSL_UartConfig	Config = 
+		{
+		   // DLL holds least significant bits of the divisor
+		   200,
+		   // DLH holds most significant bits of the divisor
+		   0,
+		   // LCR controls word length,parity selection,stop bit generation
+		   0x0003,
+		   // FCR controls fifo enable/disable,trigger level selection,dma selection
+		   0x0000, 
+		   // MCR controls autoflow selection,loopback feature,RTS selection   
+		   0x0000,
+		};
+		*/
 
 	/*
 	// Initialize clock
@@ -122,5 +125,9 @@ int My_UART(void){
 		
 	}
 	*/ 
+	
+	printf("My_UART.c complete.\n");
+	
+	return(0);
 	
 }

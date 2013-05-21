@@ -53,9 +53,10 @@ int main(void) {
 	
 	My_UART();
 	
-	Audio_To_MIDI_Using_DMA_and_CFFT();
+	//Audio_To_MIDI_Using_DMA_and_CFFT();
 	
-
+	printf("Reached end of main!\n");
+	
  	return(1);
 }
 
