@@ -23,7 +23,7 @@
 
 int My_PLL(void) {
 
-
+	Uint16  register_value;
 	Uint16	i=0;
 	/*
 	PLL_Obj pllObj;
@@ -38,10 +38,14 @@ int My_PLL(void) {
 	*/
 //---------- PLL SETUP BEGIN -----------
     printf("PLL SETUP BEGIN! \n");
-   
+    
     // Enable clocks to all peripherals 
     SYS_PCGCR1 = 0x0000;
     SYS_PCGCR2 = 0x0000;
+    
+    // Set the UART CLKSTOP bits to 0 to allow the clock to the UART peripheral. 
+    register_value = CPU_CLKSTOP;
+    CPU_CLKSTOP = register_value & 0xFFCF;
     
     // External Bus Selection Register 
 	CPU_EBSR = 0x1000; // Mode 1 (SPI, GPIO, UART, and I2S2) - ?

@@ -22,60 +22,46 @@
 #define NOTE_ON_VELOCITY	100 // 0x64 - Velocity = 100 (Range is 1 - 127) - This should be the third byte in a Note ON  sequence. 
 #define NOTE_OFF_VELOCITY	127 // 0x7F - Velocity = 127 (Range is 1 - 127) - This should be the third byte in a Note OFF sequence. 
 
-	CSL_UartSetup uartSetup =
-		{
-			/* Input clock freq in MHz */
-		    100000000,
-			/* Baud rate */
-		    /*31250, */
-		    31250,
-			/* Word length of 8 */
-		    CSL_UART_WORD8,
-			/* To generate 1 stop bit */
-		    0, 
-			/* Disable the parity */
-		    CSL_UART_DISABLE_PARITY,
-			/* Enable trigger 14 fifo */
-			CSL_UART_FIFO_DISABLE, // - ??
-			/* Loop Back enable */
-		    CSL_UART_NO_LOOPBACK,
-			/* No auto flow control*/
-			CSL_UART_NO_AFE , // - does not matter, choose OFF anyway.
-			/* No RTS */
-			CSL_UART_NO_RTS , // - does not matter because AFE is OFF, choose NO_RST anyway. 
-		};
-		
+CSL_UartObj 	uartObj; // Used to create the UART instance handle. 
+CSL_UartHandle	hUart;	 // The UART instance handle. 
+	
 int My_UART(void){
 	
 	// UART Variable Declaration 
 	Int16           status;  // For checking if functions ran successfully. 
-	CSL_UartObj 	uartObj; // Used to create the UART instance handle. 
-	CSL_UartHandle	hUart;	 // The UART instance handle. 
-	/*
+	CSL_UartConfig	Config;
 	char pBuf[3];  // UART TX Buffer - char is 1 byte - ?
-	*/
 	
 	/*
-	CSL_UartConfig	Config = 
+    Config.DLL = 200;  // Set baud rate
+    Config.DLH = 0;
+    Config.FCR = 0x0000;            // Clear UART TX & RX FIFOs
+    Config.LCR = 0x0003;            // 8-bit words, 1 STOP bit generated, No Parity, No Stick paritiy, No Break control
+    Config.MCR = 0x0000;            // RTS & CTS disabled, Loopback mode disabled, Autoflow disabled
+	*/
+	
+	CSL_UartSetup uartSetup =
 		{
-		   // DLL holds least significant bits of the divisor
-		   200,
-		   // DLH holds most significant bits of the divisor
-		   0,
-		   // LCR controls word length,parity selection,stop bit generation
-		   0x0003,
-		   // FCR controls fifo enable/disable,trigger level selection,dma selection
-		   0x0000, 
-		   // MCR controls autoflow selection,loopback feature,RTS selection   
-		   0x0000,
+			// Input clock freq in MHz 
+		    100000000,
+			// Baud rate 
+		    31250,
+			// Word length of 8 
+		    CSL_UART_WORD8,
+			// To generate 1 stop bit 
+		    0, 
+			// Disable the parity 
+		    CSL_UART_DISABLE_PARITY,
+			// Enable trigger 14 fifo 
+			CSL_UART_FIFO_DISABLE, // - ??
+			// Loop Back enable 
+		    CSL_UART_NO_LOOPBACK,
+			// No auto flow control
+			CSL_UART_NO_AFE , // - does not matter, choose OFF anyway.
+			// No RTS 
+			CSL_UART_NO_RTS , // - does not matter because AFE is OFF, choose NO_RST anyway. 
 		};
-		*/
-
-	/*
-	// Initialize clock
-	My_PLL();
-	printf("PLL Initialized to 100 MHz!\n");
-	 */
+	
 	 
     // Initialize UART
 	status = UART_init(&uartObj, CSL_UART_INST_0, UART_POLLED); 
@@ -83,8 +69,12 @@ int My_UART(void){
     	else { printf("UART_init Successful\n"); }
     	
 	hUart = (CSL_UartHandle)&uartObj;
-	
-	
+
+    status = UART_reset(hUart);
+    if(CSL_SOK != status) { printf("UART_reset failed! %d\n",status); return(status); }
+    	else { printf("UART_reset Successful\n"); }
+    
+    	
 	// UART Setup
     status = UART_setup(hUart, &uartSetup);
     	if(CSL_SOK != status) { printf("UART_setup failed error code %d\n",status); return(status); }
@@ -96,6 +86,10 @@ int My_UART(void){
     	if(CSL_SOK != status) { printf("UART_config failed error code %d\n",status); return(status); }
     	else { printf("UART_config Successful\n"); }
     */
+    
+    status = UART_resetOff(hUart);  
+    if(CSL_SOK != status) { printf("UART_resetOff failed! %d\n",status); return(status); }
+    	else { printf("UART_resetOff Successful\n"); }
     	
 	// Repeatedly output MIDI ON and MIDI OFF 
 	/*
@@ -124,7 +118,7 @@ int My_UART(void){
 		USBSTK5505_waitusec(ONE_HALF_SECOND);
 		
 	}
-	*/ 
+	*/
 	
 	printf("My_UART.c complete.\n");
 	

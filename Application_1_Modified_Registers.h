@@ -27,6 +27,7 @@
 #define CPU_EBSR          	   *(volatile ioport Uint16*)(0x1C00) // External Bus Selection Register
 #define CPU_PSRCR			   *(volatile ioport Uint16*)(0x1C04) // Peripheral Software Reset Counter Register
 #define CPU_PRCR			   *(volatile ioport Uint16*)(0x1C05) // Peripheral Software Reset Counter Register
+#define CPU_CLKSTOP			   *(volatile ioport Uint16*)(0x1C3A)
 
 // My_DMA
 /* ==================== Some CPU Registers ==================== */
@@ -133,6 +134,7 @@
 /* ------------------------------------------------------------------------ *
  *  I2S Module                                                              *
  * ------------------------------------------------------------------------ */
+ /*
 #define I2S0_CR            *(volatile ioport Uint16*)(0x2800)
 #define I2S0_SRGR          *(volatile ioport Uint16*)(0x2804)
 #define I2S0_W0_LSW_W      *(volatile ioport Uint16*)(0x2808)
@@ -145,6 +147,7 @@
 #define I2S0_W0_MSW_R      *(volatile ioport Uint16*)(0x2829)
 #define I2S0_W1_LSW_R      *(volatile ioport Uint16*)(0x282C)
 #define I2S0_W1_MSW_R      *(volatile ioport Uint16*)(0x282D)
+*/
 
 #define I2S2_CR            *(volatile ioport Uint16*)(0x2A00)
 #define I2S2_SRGR          *(volatile ioport Uint16*)(0x2A04)
@@ -158,5 +161,19 @@
 #define I2S2_W0_MSW_R      *(volatile ioport Uint16*)(0x2A29)
 #define I2S2_W1_LSW_R      *(volatile ioport Uint16*)(0x2A2C)
 #define I2S2_W1_MSW_R      *(volatile ioport Uint16*)(0x2A2D)
+
+/* UART Registers */
+#define UART_RBR	 	   *(volatile ioport Uint16*)(0x1B00) 
+#define UART_THR	 	   *(volatile ioport Uint16*)(0x1B00) 
+#define UART_IER	 	   *(volatile ioport Uint16*)(0x1B02) 
+#define UART_IIR	 	   *(volatile ioport Uint16*)(0x1B04) 
+#define UART_FCR	 	   *(volatile ioport Uint16*)(0x1B04) 
+#define UART_LCR	 	   *(volatile ioport Uint16*)(0x1B06) 
+#define UART_MCR	 	   *(volatile ioport Uint16*)(0x1B08) 
+#define UART_LSR	 	   *(volatile ioport Uint16*)(0x1B0A) 
+#define UART_SCR	 	   *(volatile ioport Uint16*)(0x1B0E) 
+#define UART_DLL	 	   *(volatile ioport Uint16*)(0x1B10) 
+#define UART_DLH	 	   *(volatile ioport Uint16*)(0x1B12) 
+#define UART_PWREMU_MGMT   *(volatile ioport Uint16*)(0x1B18) 
 
 #endif /*APPLICATION_1_MODIFIED_REGISTERS_H_*/

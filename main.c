@@ -12,7 +12,6 @@
 #include <My_PLL.h>
 #include <My_I2C.h> 
 #include <My_AIC3204.h>
-#include <My_I2S.h>
 #include <My_I2S_Register.h>
 #include <My_DMA_Ping_Pong_Register_Setup.h>
 #include <My_UART.h>
@@ -30,10 +29,6 @@ Int16 DMA_InpR[PING_PONG_SIZE];
 Int16 DMA_OutL[PING_PONG_SIZE];
 Int16 DMA_OutR[PING_PONG_SIZE];
 
-// UART (MIDI) variables 
-int Previous_MIDI_Number = 0;
-int Current_MIDI_Number = 0;
-
 int main(void) {
 	
 	printf("Hello Nathan. Let's get funky. \n");
@@ -48,12 +43,12 @@ int main(void) {
  	My_AIC3204();
 
 	My_DMA_Ping_Pong_Register_Setup();
+
+	My_UART();
 	
 	My_I2S_Register();
 	
-	My_UART();
-	
-	//Audio_To_MIDI_Using_DMA_and_CFFT();
+	Audio_To_MIDI_Using_DMA_and_CFFT();
 	
 	printf("Reached end of main!\n");
 	

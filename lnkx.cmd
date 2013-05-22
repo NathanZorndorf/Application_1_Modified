@@ -1,6 +1,18 @@
+/******************************************************************************/
+/* LNKX.CMD - COMMAND FILE FOR LINKING C PROGRAMS IN LARGE/HUGE MEMORY MODEL  */    
+/*  cl55 <src files> -z -o<out file> -m<map file> lnkx.cmd -l<RTS library>   */
+/******************************************************************************/
+
+/*-stack    0x2000      /* Primary stack size   */
+/*-sysstack 0x1000      /* Secondary stack size */
+/*-heap     0x2000      /* Heap area size       */
+
+/* SPECIFY THE SYSTEM MEMORY MAP */
 
 MEMORY
 {
+	PAGE 0:  /* ---- Unified Program/Data Address Space ---- */  
+	
     MMR     (RW) : origin = 0000000h length = 0000c0h /* MMRs */
     /*DARAM (RW)    : origin = 00000c0h length = 00ff40h*/  /* on-chip DARAM */
     DARAM_0 (RW)  : origin = 00000c0h length = 001f40h
@@ -22,9 +34,13 @@ MEMORY
 	EMIF_CS4 (RW)  : origin = 0E00000h  length = 0100000h   /* ASYNC3 : NOR */
 	EMIF_CS5 (RW)  : origin = 0F00000h  length = 00E0000h   /* ASYNC4 : SRAM */
 
+ 	PAGE 2:  /* -------- 64K-word I/O Address Space -------- */
+
+  	IOPORT (RWI) : origin = 0x000000, length = 0x020000
+  
 }
 
-
+/* SPECIFY THE SECTIONS ALLOCATION INTO MEMORY */
 SECTIONS
 {
     vectors (NOLOAD)
@@ -45,6 +61,9 @@ SECTIONS
 	.emif_cs3   : > EMIF_CS3
 	.emif_cs4   : > EMIF_CS4
 	.emif_cs5   : > EMIF_CS5
+	
+	.ioport   >  IOPORT PAGE 2         /* Global & static ioport vars */
+	
 	/* --- MY DEFINITIONS --- */
 	/* For DSPLIB FFT */
 	/* .data:twiddle    : > DARAM_0 ALIGN = 2048 */

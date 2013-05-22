@@ -35,17 +35,6 @@ Int16 PSD_Result[FFT_LENGTH];
 #pragma DATA_SECTION(PSD_Result_sqrt, "PSD_sqrt");
 Int16 PSD_Result_sqrt[FFT_LENGTH];
 /* -------------------------------------------*/
-/* --- Special buffers required for HWAFFT ---*/
-/*
-#pragma DATA_SECTION(complex_buffer, "cmplxBuf");
-LDATA complex_buffer[WND_LEN];
-#pragma DATA_SECTION(bitreversed_buffer, "brBuf");
-#pragma DATA_ALIGN(bitreversed_buffer, 2*FFT_LENGTH);
-LDATA bitreversed_buffer[FFT_LENGTH];
-#pragma DATA_SECTION(temporary_buffer,"tmpBuf");
-LDATA temporary_buffer[FFT_LENGTH];
-*/
-/* -------------------------------------------*/
 /* --- Special buffers required for CFFT ---*/
 #pragma DATA_SECTION(complex_data,"cmplxBuf");
 LDATA complex_data[2*FFT_LENGTH];
@@ -256,7 +245,7 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
         else {
                 MIDI[f] = 0; }
 		
-		Output_MIDI(MIDI[f]); // output the MIDI note through UART.
+		//Output_MIDI(MIDI[f]); // output the MIDI note through UART.
 
 		if(f == 512) {
 			f = 0;
