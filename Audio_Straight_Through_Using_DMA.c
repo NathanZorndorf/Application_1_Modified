@@ -26,26 +26,12 @@ Int16 BufferR[FFT_LENGTH];
 Int16 realL[FFT_LENGTH];
 #pragma DATA_SECTION(realR, "rfftR");
 Int16 realR[FFT_LENGTH];
-#pragma DATA_SECTION(imagL, "ifftL");
-Int16 imagL[FFT_LENGTH];
-#pragma DATA_SECTION(imagR, "ifftR");
-Int16 imagR[FFT_LENGTH];
-
-/* --- Special buffers required for HWAFFT ---*/
-#pragma DATA_SECTION(complex_buffer, "cmplxBuf");
-Int32 complex_buffer[WND_LEN];
-
-#pragma DATA_SECTION(bitreversed_buffer, "brBuf");
-#pragma DATA_ALIGN(bitreversed_buffer, 2*FFT_LENGTH);
-Int32 bitreversed_buffer[FFT_LENGTH];
-
-#pragma DATA_SECTION(temporary_buffer,"tmpBuf");
-Int32 temporary_buffer[FFT_LENGTH];
 /* -------------------------------------------*/
 
 int Audio_Straight_Through_Using_DMA(void) {
 
 	int i;
+	int j = 0;
 	
 	
 	/* Initialize buffers */
@@ -59,8 +45,9 @@ int Audio_Straight_Through_Using_DMA(void) {
 	}
 	
 	/* Begin infinite loop */
-	while (1) 
+	while ( j < 30000) 
 	{
+		j++;
         /* Get new input audio block */
 		if (PingPongFlagInL && PingPongFlagInR)  // Last Transfer complete was Pong - Filling Ping
 		{
@@ -120,5 +107,7 @@ int Audio_Straight_Through_Using_DMA(void) {
         	}
         }
 	}
+
+return(0);
 
 }

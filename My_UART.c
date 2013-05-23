@@ -9,6 +9,7 @@
 #include <My_PLL.h>
 #include <usbstk5505.h>
 #include <My_UART.h>
+#include <Application_1_Modified_Registers.h>
 
 // UART #define's
 #define TIMEOUT_VALUE	1000
@@ -28,19 +29,12 @@ CSL_UartHandle	hUart;	 // The UART instance handle.
 int My_UART(void){
 	
 	// UART Variable Declaration 
+	int j = 0;
 	Int16           status;  // For checking if functions ran successfully. 
 	CSL_UartConfig	Config;
 	char pBuf[3];  // UART TX Buffer - char is 1 byte - ?
 	
-	/*
-    Config.DLL = 200;  // Set baud rate
-    Config.DLH = 0;
-    Config.FCR = 0x0000;            // Clear UART TX & RX FIFOs
-    Config.LCR = 0x0003;            // 8-bit words, 1 STOP bit generated, No Parity, No Stick paritiy, No Break control
-    Config.MCR = 0x0000;            // RTS & CTS disabled, Loopback mode disabled, Autoflow disabled
-	*/
-	
-	CSL_UartSetup uartSetup =
+		CSL_UartSetup uartSetup =
 		{
 			// Input clock freq in MHz 
 		    100000000,
@@ -62,6 +56,14 @@ int My_UART(void){
 			CSL_UART_NO_RTS , // - does not matter because AFE is OFF, choose NO_RST anyway. 
 		};
 	
+	
+    Config.DLL = 200;  // Set baud rate
+    Config.DLH = 0;
+    Config.FCR = 0x0000;            // Clear UART TX & RX FIFOs
+    Config.LCR = 0x0003;            // 8-bit words, 1 STOP bit generated, No Parity, No Stick paritiy, No Break control
+    Config.MCR = 0x0000;            // RTS & CTS disabled, Loopback mode disabled, Autoflow disabled
+	
+
 	 
     // Initialize UART
 	status = UART_init(&uartObj, CSL_UART_INST_0, UART_POLLED); 
@@ -70,16 +72,21 @@ int My_UART(void){
     	
 	hUart = (CSL_UartHandle)&uartObj;
 
+    /*
     status = UART_reset(hUart);
     if(CSL_SOK != status) { printf("UART_reset failed! %d\n",status); return(status); }
     	else { printf("UART_reset Successful\n"); }
+    */  
     
-    	
+    
 	// UART Setup
     status = UART_setup(hUart, &uartSetup);
     	if(CSL_SOK != status) { printf("UART_setup failed error code %d\n",status); return(status); }
     	else { printf("UART_setup Successful\n"); }
     
+    // External Bus Selection Register 
+	CPU_EBSR = 0x1000; // Mode 1 (SPI, GPIO, UART, and I2S2) - OK
+	
     /*
 	// UART Config
 	status =  UART_config(hUart, &Config);
@@ -87,14 +94,17 @@ int My_UART(void){
     	else { printf("UART_config Successful\n"); }
     */
     
+    /*
     status = UART_resetOff(hUart);  
     if(CSL_SOK != status) { printf("UART_resetOff failed! %d\n",status); return(status); }
     	else { printf("UART_resetOff Successful\n"); }
+    */
     	
 	// Repeatedly output MIDI ON and MIDI OFF 
-	/*
-	while(1)
+	
+	while(j < 6)
 	{
+		j++;
 		pBuf[0] 	= 0x90;
 		pBuf[1]	 	= 0x60;
 		pBuf[2] 	= 0x64;
@@ -118,7 +128,7 @@ int My_UART(void){
 		USBSTK5505_waitusec(ONE_HALF_SECOND);
 		
 	}
-	*/
+	
 	
 	printf("My_UART.c complete.\n");
 	

@@ -11,6 +11,7 @@
 #include <Application_1_Modified_Registers.h>
 #include <Audio_To_MIDI_Using_DMA_and_CFFT.h>
 #include <hwafft.h>
+#include <Output_MIDI.h>
 
 Int16 OverlapInL[WND_LEN];
 Int16 OverlapInR[WND_LEN];
@@ -47,9 +48,6 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 	int f = 0;
 	DATA Peak_Magnitude_Value = 0;
 	DATA Peak_Magnitude_Index = 0;
-	DATA Peak_Magnitude_Value_Array[FFT_LENGTH] = {0};
-	DATA Peak_Magnitude_Index_Array[FFT_LENGTH] = {0};
-	unsigned short oflag = 0; // overflow flag for power function 
 	int MIDI[256] = {0};
 	
 	/* Initialize buffers */
@@ -136,41 +134,20 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		
 		// Scale result by dividing again, because im not sure if I have the sqrt C library runtime fuction
 		
-		for(i = 0; i < FFT_LENGTH; i++) { 
-			PSD_Result_sqrt[i] = PSD_Result[i];
-		}
 		
-		
-
-		
-		// Find value and index of maximum value of vector x
-		//maxvec(PSD_Result, FFT_LENGTH, DATA *r_val, DATA *r_idx)
-		// Initialize index and value variables 
-		//Peak_Magnitude_Index = 0; 
-		//Peak_Magnitude_Value = 0;
-		//maxvec(PSD_Result, FFT_LENGTH, &Peak_Magnitude_Value, &Peak_Magnitude_Index);
 		
 		// Process freq. bins from 0Hz to Nyquist frequency (for efficiency) 
-		Peak_Magnitude_Value = PSD_Result_sqrt[1]; // start the search at the first value in the Magnitude spectrum
+		Peak_Magnitude_Value = PSD_Result[1]; // start the search at the first value in the Magnitude spectrum
 		Peak_Magnitude_Index = 1;
 		for( j = 2; j < NUM_BINS; j++ ) // go through useful frequency bins (FFT_LENGTH/2 +1) because the rest are symmetric
 		{ 
-			if( PSD_Result_sqrt[j] > Peak_Magnitude_Value ) // Peak search on the magnitude of the FFT to find the fundamental frequency - the frequency bin with the highest power value in it 
+			if( PSD_Result[j] > Peak_Magnitude_Value ) // Peak search on the magnitude of the FFT to find the fundamental frequency - the frequency bin with the highest power value in it 
 			{
 				Peak_Magnitude_Value = PSD_Result[j];
 				Peak_Magnitude_Index = j;
 			}
 		}
 		
-		// Store the peak search results in an array, for testing purposes 
-		/*
-		Peak_Magnitude_Index_Array[f] = Peak_Magnitude_Index;
-		Peak_Magnitude_Value_Array[f] = Peak_Magnitude_Value;
-		f = f + 1;
-		if(f == FFT_LENGTH) {
-			f = 0;
-		}
-		*/
 		
 		// This huge if-else statement only applies for a sample rate of 8000 samples/sec, and an FFT length of 512.
 		f++;
@@ -243,9 +220,14 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
         else if ((Peak_Magnitude_Index >= 98) && (Peak_Magnitude_Index < 103)) {
                 MIDI[f] = 91; }
         else {
-                MIDI[f] = 0; }
+                MIDI[f] = 0; } 
 		
-		//Output_MIDI(MIDI[f]); // output the MIDI note through UART.
+		if(Peak_Magnitude_Value <= POWER_THRESHOLD)
+		{
+			MIDI[f] = 0;
+		}
+		
+		Output_MIDI(MIDI[f]); // output the MIDI note through UART.
 
 		if(f == 512) {
 			f = 0;

@@ -13,5 +13,6 @@
 	extern Int16 PingPongFlagOutL;
 	extern Int16 PingPongFlagOutR;
 
+	#define POWER_THRESHOLD 1200
 	
 #endif /*AUDIO_TO_MIDI_USING_DMA_AND_CFFT_H_*/

@@ -15,7 +15,7 @@
 #include <My_I2S_Register.h>
 #include <My_DMA_Ping_Pong_Register_Setup.h>
 #include <My_UART.h>
-// #include <Audio_Straight_Through_Using_DMA.h>
+//#include <Audio_Straight_Through_Using_DMA.h>
 #include <Audio_To_MIDI_Using_DMA_and_CFFT.h>
 
 // Buffers for DMA in/out and overlap-add 
@@ -44,9 +44,11 @@ int main(void) {
 
 	My_DMA_Ping_Pong_Register_Setup();
 
-	My_UART();
+	My_UART(); // Setup and emits MIDI ON and MIDI OFF 6 times to test UART. 
 	
 	My_I2S_Register();
+	
+	//Audio_Straight_Through_Using_DMA(); // just to test everything is working before moving onto the real deal
 	
 	Audio_To_MIDI_Using_DMA_and_CFFT();
 	

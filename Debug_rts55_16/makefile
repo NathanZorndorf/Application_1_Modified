@@ -10,29 +10,46 @@ CG_TOOL_ROOT := C:/Program Files/Texas Instruments/ccsv4/tools/compiler/c5500
 
 ORDERED_OBJS += \
 $(GEN_CMDS_QUOTED) \
+"./vector.obj" \
 "./usbstk5505_led.obj" \
 "./usbstk5505_i2c.obj" \
 "./usbstk5505_gpio.obj" \
 "./usbstk5505.obj" \
 "./stereo.obj" \
+"./sqrtv.obj" \
+"./mul32.obj" \
+"./maxvec.obj" \
 "./main.obj" \
 "./csl_intc.obj" \
+"./cfft_scale.obj" \
+"./cfft_noscale.obj" \
+"./cfft32_scale.obj" \
+"./cfft32_noscale.obj" \
+"./cbrev32.obj" \
+"./cbrev.obj" \
 "./aic_i2c.obj" \
 "./aic3204_init.obj" \
 "./aic3204.obj" \
+"./add.obj" \
 "./PLL.obj" \
+"./Output_MIDI.obj" \
+"./My_UART_Register.obj" \
 "./My_PLL.obj" \
 "./My_I2S_Register.obj" \
 "./My_I2S.obj" \
 "./My_I2C.obj" \
 "./My_DMA_Ping_Pong_Register_Setup.obj" \
 "./My_AIC3204.obj" \
+"./I2C_Test.obj" \
+"./DMA_Ping_Pong.obj" \
+"./Audio_To_MIDI_Using_DMA_and_HWAFFT.obj" \
+"./Audio_To_MIDI_Using_DMA_and_CFFT.obj" \
 "./Audio_To_MIDI_Using_DMA.obj" \
 -l"C:\Program Files\Texas Instruments\ccsv4\tools\compiler\c5500\lib\55xdsp.lib" \
 -l"C:/Program Files/Texas Instruments/ccsv4/tools/compiler/c5500/lib/rts55.lib" \
 "../55xdsph.lib" \
 "../CSLc55x5h.lib" \
-"../lnkx.cmd" \
+"../lnkx_Spectrum_Digital_UART_Ex.cmd" \
 
 -include ../makefile.init
 
@@ -42,7 +59,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include Debug_rts55h_32/subdir_vars.mk
 -include subdir_rules.mk
+-include Debug_rts55h_32/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -141,8 +160,9 @@ Application_1_Modified.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(C5500_EXECUTABLE_OUTPUTS__QTD) "Application_1_Modified.out"
-	-$(RM) ".\Audio_To_MIDI_Using_DMA.obj" ".\My_AIC3204.obj" ".\My_DMA_Ping_Pong_Register_Setup.obj" ".\My_I2C.obj" ".\My_I2S.obj" ".\My_I2S_Register.obj" ".\My_PLL.obj" ".\PLL.obj" ".\aic3204.obj" ".\aic3204_init.obj" ".\aic_i2c.obj" ".\csl_intc.obj" ".\main.obj" ".\stereo.obj" ".\usbstk5505.obj" ".\usbstk5505_gpio.obj" ".\usbstk5505_i2c.obj" ".\usbstk5505_led.obj" 
-	-$(RM) ".\Audio_To_MIDI_Using_DMA.pp" ".\My_AIC3204.pp" ".\My_DMA_Ping_Pong_Register_Setup.pp" ".\My_I2C.pp" ".\My_I2S.pp" ".\My_I2S_Register.pp" ".\My_PLL.pp" ".\PLL.pp" ".\aic3204.pp" ".\aic3204_init.pp" ".\aic_i2c.pp" ".\csl_intc.pp" ".\main.pp" ".\stereo.pp" ".\usbstk5505.pp" ".\usbstk5505_gpio.pp" ".\usbstk5505_i2c.pp" ".\usbstk5505_led.pp" 
+	-$(RM) ".\Audio_To_MIDI_Using_DMA.obj" ".\Audio_To_MIDI_Using_DMA_and_CFFT.obj" ".\Audio_To_MIDI_Using_DMA_and_HWAFFT.obj" ".\DMA_Ping_Pong.obj" ".\I2C_Test.obj" ".\My_AIC3204.obj" ".\My_DMA_Ping_Pong_Register_Setup.obj" ".\My_I2C.obj" ".\My_I2S.obj" ".\My_I2S_Register.obj" ".\My_PLL.obj" ".\My_UART_Register.obj" ".\Output_MIDI.obj" ".\PLL.obj" ".\add.obj" ".\aic3204.obj" ".\aic3204_init.obj" ".\aic_i2c.obj" ".\cbrev.obj" ".\cbrev32.obj" ".\cfft32_noscale.obj" ".\cfft32_scale.obj" ".\cfft_noscale.obj" ".\cfft_scale.obj" ".\csl_intc.obj" ".\main.obj" ".\maxvec.obj" ".\mul32.obj" ".\sqrtv.obj" ".\stereo.obj" ".\usbstk5505.obj" ".\usbstk5505_gpio.obj" ".\usbstk5505_i2c.obj" ".\usbstk5505_led.obj" ".\vector.obj" 
+	-$(RM) ".\add.pp" ".\cbrev.pp" ".\cbrev32.pp" ".\cfft32_noscale.pp" ".\cfft32_scale.pp" ".\cfft_noscale.pp" ".\cfft_scale.pp" ".\maxvec.pp" ".\mul32.pp" ".\sqrtv.pp" ".\vector.pp" 
+	-$(RM) ".\Audio_To_MIDI_Using_DMA.pp" ".\Audio_To_MIDI_Using_DMA_and_CFFT.pp" ".\Audio_To_MIDI_Using_DMA_and_HWAFFT.pp" ".\DMA_Ping_Pong.pp" ".\I2C_Test.pp" ".\My_AIC3204.pp" ".\My_DMA_Ping_Pong_Register_Setup.pp" ".\My_I2C.pp" ".\My_I2S.pp" ".\My_I2S_Register.pp" ".\My_PLL.pp" ".\My_UART_Register.pp" ".\Output_MIDI.pp" ".\PLL.pp" ".\aic3204.pp" ".\aic3204_init.pp" ".\aic_i2c.pp" ".\csl_intc.pp" ".\main.pp" ".\stereo.pp" ".\usbstk5505.pp" ".\usbstk5505_gpio.pp" ".\usbstk5505_i2c.pp" ".\usbstk5505_led.pp" 
 	-@echo ' '
 
 .PHONY: all clean dependents

@@ -48,7 +48,7 @@ int My_PLL(void) {
     CPU_CLKSTOP = register_value & 0xFFCF;
     
     // External Bus Selection Register 
-	CPU_EBSR = 0x1000; // Mode 1 (SPI, GPIO, UART, and I2S2) - ?
+	CPU_EBSR = 0x1000; // Mode 1 (SPI, GPIO, UART, and I2S2) - OK
 	
     /* CGCR1 - Section 1.4.4.1 */
     /* PLL power up. PLL Multiplier M = 1000 */

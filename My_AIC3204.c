@@ -143,8 +143,8 @@ int My_AIC3204(void) {
 	AIC3204_rset(0x37, 0x30); 	   // IN2R routed to Right MICPGA (positive terminal)via 40kOhm = -12 dB gain	- OK	
 	AIC3204_rset(0x36, 0x03); 	   // CM2L routed to left MICPGA (negative terminal) via  40kOhm 				- OK
 	AIC3204_rset(0x39, 0x03); 	   // CM2R routed to right MICPGA (negative terminal)via 40kOhm				- OK
-	AIC3204_rset(0x3B, 12); 	   // MICPGA (left)  enabled, register 59, value 0x28(40d) = +20 dB gain 	- OK
-	AIC3204_rset(0x3C, 12); 	   // MICPGA (right) enabled, register 60, value 0x28(40d) = +20 dB gain 	- OK
+	AIC3204_rset(0x3B, 25); 	   // MICPGA (left)  enabled, register 59, value 0x28(40d) = +20 dB gain 	- OK
+	AIC3204_rset(0x3C, 25); 	   // MICPGA (right) enabled, register 60, value 0x28(40d) = +20 dB gain 	- OK
 	// ADC Power Up				- OK 
 	printf("ADC Power Up...\n"); 
 	AIC3204_rset( 0, 0 );	   // Select page 0													- OK	
