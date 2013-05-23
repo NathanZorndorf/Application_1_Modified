@@ -69,7 +69,7 @@ SECTIONS
 	/* .data:twiddle    : > DARAM_0 ALIGN = 2048 */
 	/* .fftcode         : > SARAM */
 	
-	cmplxBuf  : > DARAM_1
+	cmplxBuf  : > DARAM_1, align(4)  /* this is due to long-word data memory access */
 	BufL      : > DARAM_1
 	BufR      : > DARAM_1
 	PSD		  : > DARAM_1

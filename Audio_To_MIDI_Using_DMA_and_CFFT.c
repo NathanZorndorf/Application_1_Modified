@@ -229,7 +229,7 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		
 		Output_MIDI(MIDI[f]); // output the MIDI note through UART.
 
-		if(f == 512) {
+		if(f == 256) {
 			f = 0;
 		} 
 		
