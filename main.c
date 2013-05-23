@@ -44,7 +44,7 @@ int main(void) {
 
 	My_DMA_Ping_Pong_Register_Setup();
 
-	My_UART(); // Setup and emits MIDI ON and MIDI OFF 6 times to test UART. 
+	//My_UART(); // Setup and emits MIDI ON and MIDI OFF 6 times to test UART. 
 	
 	My_I2S_Register();
 	
