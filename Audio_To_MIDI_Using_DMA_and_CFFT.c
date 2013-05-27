@@ -13,22 +13,14 @@
 #include <hwafft.h>
 #include <Output_MIDI.h>
 
-Int16 OverlapInL[WND_LEN];
 Int16 OverlapInR[WND_LEN];
-Int16 OverlapOutL[OVERLAP_LENGTH];
 Int16 OverlapOutR[OVERLAP_LENGTH];
 
 /* --- buffers required for processing  ----*/
-#pragma DATA_SECTION(BufferL,"BufL");
-Int16 BufferL[FFT_LENGTH];
 #pragma DATA_SECTION(BufferR,"BufR");
 Int16 BufferR[FFT_LENGTH];
-#pragma DATA_SECTION(realL, "rfftL");
-Int16 realL[FFT_LENGTH];
 #pragma DATA_SECTION(realR, "rfftR");
 Int16 realR[FFT_LENGTH];
-#pragma DATA_SECTION(imagL, "ifftL");
-Int16 imagL[FFT_LENGTH];
 #pragma DATA_SECTION(imagR, "ifftR");
 Int16 imagR[FFT_LENGTH];
 #pragma DATA_SECTION(PSD_Result, "PSD");
@@ -50,11 +42,9 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 	
 	/* Initialize buffers */
 	for (i = 0; i < WND_LEN; i++) {
-		OverlapInL[i] = 0;
 		OverlapInR[i] = 0;
 	}
 	for (i = 0; i < OVERLAP_LENGTH; i++) {
-		OverlapOutL[i] = 0;
 		OverlapOutR[i] = 0;
 	}
 
@@ -63,27 +53,24 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 	while (1) 
 	{
         /* Get new input audio block */
-		if (PingPongFlagInL && PingPongFlagInR)  // Last Transfer complete was Pong - Filling Ping
+		if (PingPongFlagInR)  // Last Transfer complete was Pong - Filling Ping
 		{
 			for (i = 0; i < HOP_SIZE; i++) {
 		       	/* Copy previous NEW data to current OLD data */
-		       	OverlapInL[i] = OverlapInL[i + HOP_SIZE];
 		       	OverlapInR[i] = OverlapInR[i + HOP_SIZE];
 
 		       	/* Update NEW data with current audio in */
-		       	OverlapInL[i + HOP_SIZE] = DMA_InpL[i + AUDIO_IO_SIZE]; // CPU Copies Second Half of index values ("Pong"), while DMA fills First Half ("Ping")
+				// CPU Copies Second Half of index values ("Pong"), while DMA fills First Half ("Ping")
 		       	OverlapInR[i + HOP_SIZE] = DMA_InpR[i + AUDIO_IO_SIZE];
 		    }
 		}
-		else  									// Last Transfer complete was Ping - Filling Pong
+		else  // Last Transfer complete was Ping - Filling Pong
 		{
 			for (i = 0; i < HOP_SIZE; i++) {
 		       	/* Copy previous NEW data to current OLD data */
-		       	OverlapInL[i] = OverlapInL[i + HOP_SIZE];
 		       	OverlapInR[i] = OverlapInR[i + HOP_SIZE];
 
 		       	/* Update NEW data with current audio in */
-		       	OverlapInL[i + HOP_SIZE] = DMA_InpL[i];
 		       	OverlapInR[i + HOP_SIZE] = DMA_InpR[i];
 		    }
 		}
@@ -91,7 +78,6 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		
 		/* Create windowed/not windowed buffer for processing */
         for (i = 0; i < WND_LEN; i++) {
-        	BufferL[i] = OverlapInL[i];
         	BufferR[i] = OverlapInR[i];
         }
         
@@ -233,16 +219,14 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		} 
 		
 		// Only using the right channel, so we can have bigger buffers for the right channel ( because we dont need to allocate memory for the left channel buffers)
-        if (PingPongFlagOutL && PingPongFlagOutR) // Last Transfer complete was Pong - Filling Ping
+        if (PingPongFlagOutR) // Last Transfer complete was Pong - Filling Ping
         {
         	for (i = 0; i < OVERLAP_LENGTH; i++) 
         	{
         		/* Current output block is previous overlapped block + current processed block */
-        		DMA_OutL[i + AUDIO_IO_SIZE] = 0;
         		DMA_OutR[i + AUDIO_IO_SIZE] = OverlapOutR[i] + BufferR[i]; 
 
 				/* Update overlap buffer */
-        		OverlapOutL[i] = 0;
         		OverlapOutR[i] = BufferR[i + HOP_SIZE];
         	}
         } 
@@ -251,11 +235,9 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
         	for (i = 0; i < OVERLAP_LENGTH; i++) 
         	{
         		/* Current output block is previous overlapped block + current processed block */
-        		DMA_OutL[i] = 0;
         		DMA_OutR[i] = OverlapOutR[i] + BufferR[i]; 
 
         		/* Update overlap buffer */
-        		OverlapOutL[i] = 0;
         		OverlapOutR[i] = BufferR[i + HOP_SIZE];
         	}
         }

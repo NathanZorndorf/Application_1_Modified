@@ -46,7 +46,7 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
  	printf("IER1     		= 0x%X \n", IFR1); 
  		
  	// Step 4 - Enable interrupts 
-    DMA_IER = 0x00F0; // Enable interrupts for DMA1 CH0-CH3 
+    DMA_IER = 0x00A0; // Enable interrupts for DMA1 CH0-CH3 
     
     // Step 5 - Setup sync event 
     register_value 	= DMA1_CESR1;
@@ -55,32 +55,34 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
     DMA1_CESR2 		= register_value | 0x0101; /* Set CH3, CH2 sync event to I2S2 transmit*/
     	
     // Step 6 - Channel Source Address
+    /*
     DMA1_CH0_SSAL = 0x2A28; // I2S Receive Left Data 0 Register
 	DMA1_CH0_SSAU = 0x0000;
-	
+	*/
 	DMA1_CH1_SSAL = 0x2A2C; // I2S Receive Right Data 0 Register
 	DMA1_CH1_SSAU = 0x0000;
-    
+    /*
     dma_address = convert_address(DMA_OutL);       // convert address 
 	DMA1_CH2_SSAL = (Uint16)dma_address;          // keep LSBs 
 	DMA1_CH2_SSAU = 0xFFFF & (dma_address >> 16); // keep MSBs 
-	
+	*/
 	dma_address = convert_address(DMA_OutR);   
 	DMA1_CH3_SSAL = (Uint16)dma_address;
 	DMA1_CH3_SSAU = 0xFFFF & (dma_address >> 16);
-
+	
     // Step 7 - Channel Destination Address 
+    /*
     dma_address = convert_address(DMA_InpL);
 	DMA1_CH0_DSAL = (Uint16)dma_address;
 	DMA1_CH0_DSAU = 0xFFFF & (dma_address >> 16);
-	
+	*/
 	dma_address = convert_address(DMA_InpR);
 	DMA1_CH1_DSAL = (Uint16)dma_address;
 	DMA1_CH1_DSAU = 0xFFFF & (dma_address >> 16);
-	
+	/*
 	DMA1_CH2_DSAL = 0x2A08;	// I2S2 Transmit Left Data 0 Register
 	DMA1_CH2_DSAU = 0x0000;
-	
+	*/
 	DMA1_CH3_DSAL = 0x2A0C;	// I2S2 Transmit Right Data 0 Register
 	DMA1_CH3_DSAU = 0x0000;
 	
@@ -94,24 +96,24 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
 	/*   intended one to ensure this.                                   */
 	/* In order to transfer _AUDIO_IO_SIZE_ 16-bit samples in ping/pong */
 	/* mode, we specify the transfer length as 2*2*AUDIO_IO_SIZE = 2*PING_PONG_SIZE      */
-	DMA1_CH0_TCR1 = 2*PING_PONG_SIZE;
+	//DMA1_CH0_TCR1 = 2*PING_PONG_SIZE;
     DMA1_CH1_TCR1 = 2*PING_PONG_SIZE;
-    DMA1_CH2_TCR1 = 2*PING_PONG_SIZE;
+   // DMA1_CH2_TCR1 = 2*PING_PONG_SIZE;
     DMA1_CH3_TCR1 = 2*PING_PONG_SIZE;
     
     // Step 9 - Configure options 
-    DMA1_CH0_TCR2 = 0x3081; // source is constant, destination address increments by four bytes after each transfer.
+    //DMA1_CH0_TCR2 = 0x3081; // source is constant, destination address increments by four bytes after each transfer.
     DMA1_CH1_TCR2 = 0x3081;
-    DMA1_CH2_TCR2 = 0x3201; // destination is constant, source address increments by four bytes after each transfer.
+    //DMA1_CH2_TCR2 = 0x3201; // destination is constant, source address increments by four bytes after each transfer.
     DMA1_CH3_TCR2 = 0x3201;  
     
     // Step 10 - Enable DMA Controller 0 channel 0-3
-    register_value 	= DMA1_CH0_TCR2; 
-    DMA1_CH0_TCR2 	= register_value | 0x8004;
+    //register_value 	= DMA1_CH0_TCR2; 
+    //DMA1_CH0_TCR2 	= register_value | 0x8004;
     register_value 	= DMA1_CH1_TCR2; 
     DMA1_CH1_TCR2 	= register_value | 0x8004;
-    register_value 	= DMA1_CH2_TCR2; 
-    DMA1_CH2_TCR2 	= register_value | 0x8004;
+    //register_value 	= DMA1_CH2_TCR2; 
+    //DMA1_CH2_TCR2 	= register_value | 0x8004;
     register_value 	= DMA1_CH3_TCR2; 
     DMA1_CH3_TCR2 	= register_value | 0x8004;
 
@@ -135,13 +137,6 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
     /* Channels 0-1, input */
     if (register_value1 & 0x0030) // if DMA 1 channel 0 and 1 interrupts are flagged  
     {
-    	register_value2 = DMA1_CH0_TCR2;
-    	if (register_value2 & 0x0002) { 
-    		PingPongFlagInL = 1; // Last Transfer complete was Pong - Filling Ping
-    	} else {
-    		PingPongFlagInL = 0; // Last Transfer complete was Ping - Filling Pong
-    	}
-    	
     	register_value2 = DMA1_CH1_TCR2;
     	if (register_value2 & 0x0002) {
     		PingPongFlagInR = 1; // Last Transfer complete was Pong - Filling Ping
@@ -156,13 +151,6 @@ extern void VECSTART(void);	 			// WHERE IS THIS DEFINED/DECLARED
     /* Channels 2-3, output */
     if (register_value1 & 0x00C0)  // if DMA 1 channel 2-3 interrupts are flagged 
     { 
-    	register_value2 = DMA1_CH2_TCR2;
-    	if (register_value2 & 0x0002) {
-    		PingPongFlagOutL = 1;
-    	} else {
-    		PingPongFlagOutL = 0;
-    	}
-    	
     	register_value2 = DMA1_CH3_TCR2;
     	if (register_value2 & 0x0002) {
     		PingPongFlagOutR = 1;

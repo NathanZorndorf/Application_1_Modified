@@ -24,9 +24,7 @@ Int16 PingPongFlagInR;
 Int16 PingPongFlagOutL;
 Int16 PingPongFlagOutR;
 
-Int16 DMA_InpL[PING_PONG_SIZE];
 Int16 DMA_InpR[PING_PONG_SIZE];
-Int16 DMA_OutL[PING_PONG_SIZE];
 Int16 DMA_OutR[PING_PONG_SIZE];
 
 int main(void) {
