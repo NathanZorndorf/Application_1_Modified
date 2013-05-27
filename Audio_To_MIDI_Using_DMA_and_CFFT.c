@@ -33,8 +33,6 @@ Int16 imagL[FFT_LENGTH];
 Int16 imagR[FFT_LENGTH];
 #pragma DATA_SECTION(PSD_Result, "PSD");
 Int16 PSD_Result[FFT_LENGTH];
-#pragma DATA_SECTION(PSD_Result_sqrt, "PSD_sqrt");
-Int16 PSD_Result_sqrt[FFT_LENGTH];
 /* -------------------------------------------*/
 /* --- Special buffers required for CFFT ---*/
 #pragma DATA_SECTION(complex_data,"cmplxBuf");
@@ -59,6 +57,7 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		OverlapOutL[i] = 0;
 		OverlapOutR[i] = 0;
 	}
+
 	
 	/* Begin infinite loop */
 	while (1) 
@@ -132,7 +131,7 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		}
 		
 		
-		// Scale result by dividing again, because im not sure if I have the sqrt C library runtime fuction
+		// Scale result so we dont get overflow 
 		
 		
 		
@@ -233,16 +232,17 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 			f = 0;
 		} 
 		
+		// Only using the right channel, so we can have bigger buffers for the right channel ( because we dont need to allocate memory for the left channel buffers)
         if (PingPongFlagOutL && PingPongFlagOutR) // Last Transfer complete was Pong - Filling Ping
         {
         	for (i = 0; i < OVERLAP_LENGTH; i++) 
         	{
         		/* Current output block is previous overlapped block + current processed block */
-        		DMA_OutL[i + AUDIO_IO_SIZE] = OverlapOutL[i] + BufferL[i];
+        		DMA_OutL[i + AUDIO_IO_SIZE] = 0;
         		DMA_OutR[i + AUDIO_IO_SIZE] = OverlapOutR[i] + BufferR[i]; 
 
 				/* Update overlap buffer */
-        		OverlapOutL[i] = BufferL[i + HOP_SIZE];
+        		OverlapOutL[i] = 0;
         		OverlapOutR[i] = BufferR[i + HOP_SIZE];
         	}
         } 
@@ -251,11 +251,11 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
         	for (i = 0; i < OVERLAP_LENGTH; i++) 
         	{
         		/* Current output block is previous overlapped block + current processed block */
-        		DMA_OutL[i] = OverlapOutL[i] + BufferL[i];
+        		DMA_OutL[i] = 0;
         		DMA_OutR[i] = OverlapOutR[i] + BufferR[i]; 
 
         		/* Update overlap buffer */
-        		OverlapOutL[i] = BufferL[i + HOP_SIZE];
+        		OverlapOutL[i] = 0;
         		OverlapOutR[i] = BufferR[i + HOP_SIZE];
         	}
         }

@@ -27,8 +27,6 @@ int My_I2S_Register(void) {
      
 
 	I2S2_I2SINTMASK = 0x0003; // OUERR (overrun/underrun) and FERR (frame sync) error enabled.
-	//I2S2_I2SINTMASK = 0x0000; // No flags enabled. 
-    //I2S2_I2SINTMASK = 0x002B; // For use with Audio_Straight_Through.c
 
     I2S2_I2SSCTRL   = 0x0090; // Set I2S0 in stereo mode, 16-bit, with data packing, slave 
 	
