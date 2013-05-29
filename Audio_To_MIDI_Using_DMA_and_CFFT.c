@@ -31,6 +31,15 @@ Int16 PSD_Result[FFT_LENGTH];
 LDATA complex_data[2*FFT_LENGTH];
 /* -------------------------------------------*/
 
+/* 1024 Hanning window in Q0.15 */
+/* From MATLAB:
+   >> wnd = hann(1024,'periodic');
+   >> fixwnd=fi(wnd,1,16,15); 
+   >> hexfixwnd = hex(fixwnd); */
+//#pragma DATA_SECTION(recwin,"wnd2");
+//Int16 recwin[WND_LEN]={   };
+
+
 int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 
 	int i = 0;
@@ -134,75 +143,75 @@ int Audio_To_MIDI_Using_DMA_and_CFFT(void) {
 		}
 		
 		
-		// This huge if-else statement only applies for a sample rate of 8000 samples/sec, and an FFT length of 512.
+		// This huge if-else statement only applies for a sample rate of 8000 samples/sec, and an FFT length of 1024.
 		f++;
-		if ((Peak_Magnitude_Index >= 15) && (Peak_Magnitude_Index < 16)) { 
+		if ((Peak_Magnitude_Index >= 30) && (Peak_Magnitude_Index < 32)) { 
                 MIDI[f] = 59; }
-        else if ((Peak_Magnitude_Index >= 16) && (Peak_Magnitude_Index < 17)) {
+        else if ((Peak_Magnitude_Index >= 32) && (Peak_Magnitude_Index < 34)) {
                 MIDI[f] = 60; }
-        else if ((Peak_Magnitude_Index >= 17) && (Peak_Magnitude_Index < 18)) {
+        else if ((Peak_Magnitude_Index >= 34) && (Peak_Magnitude_Index < 36)) {
                 MIDI[f] = 61; }
-        else if ((Peak_Magnitude_Index >= 18) && (Peak_Magnitude_Index < 19)) {
+        else if ((Peak_Magnitude_Index >= 36) && (Peak_Magnitude_Index < 38)) {
                 MIDI[f] = 62; }
-        else if ((Peak_Magnitude_Index >= 19) && (Peak_Magnitude_Index < 21)) { 
+        else if ((Peak_Magnitude_Index >= 38) && (Peak_Magnitude_Index < 40)) { 
                 MIDI[f] = 63; }
-        else if ((Peak_Magnitude_Index >= 21) && (Peak_Magnitude_Index < 22)) {
+        else if ((Peak_Magnitude_Index >= 40) && (Peak_Magnitude_Index < 42)) {
                 MIDI[f] = 64; }
-        else if ((Peak_Magnitude_Index >= 22) && (Peak_Magnitude_Index < 23)) {
+        else if ((Peak_Magnitude_Index >= 42) && (Peak_Magnitude_Index < 44)) {
                 MIDI[f] = 65; }
-        else if ((Peak_Magnitude_Index >= 23) && (Peak_Magnitude_Index < 24)) {
+        else if ((Peak_Magnitude_Index >= 44) && (Peak_Magnitude_Index < 47)) {
                 MIDI[f] = 66; }
-        else if ((Peak_Magnitude_Index >= 24) && (Peak_Magnitude_Index < 26)) {
+        else if ((Peak_Magnitude_Index >= 47) && (Peak_Magnitude_Index < 51)) {
                 MIDI[f] = 67; }
-        else if ((Peak_Magnitude_Index >= 26) && (Peak_Magnitude_Index < 27)) { 
+        else if ((Peak_Magnitude_Index >= 51) && (Peak_Magnitude_Index < 53)) { 
                 MIDI[f] = 68; }
-        else if ((Peak_Magnitude_Index >= 27) && (Peak_Magnitude_Index < 29)) { 
+        else if ((Peak_Magnitude_Index >= 53) && (Peak_Magnitude_Index < 56)) { 
                 MIDI[f] = 69; }
-        else if ((Peak_Magnitude_Index >= 29) && (Peak_Magnitude_Index < 31)) {
+        else if ((Peak_Magnitude_Index >= 56) && (Peak_Magnitude_Index < 59)) {
                 MIDI[f] = 70; }
-        else if ((Peak_Magnitude_Index >= 31) && (Peak_Magnitude_Index < 33)) { 
+        else if ((Peak_Magnitude_Index >= 59) && (Peak_Magnitude_Index < 62)) { 
                 MIDI[f] = 71; }
-        else if ((Peak_Magnitude_Index >= 33) && (Peak_Magnitude_Index < 34)) {
+        else if ((Peak_Magnitude_Index >= 62) && (Peak_Magnitude_Index < 67)) {
                 MIDI[f] = 72; }
-        else if ((Peak_Magnitude_Index >= 34) && (Peak_Magnitude_Index < 37)) { 
+        else if ((Peak_Magnitude_Index >= 67) && (Peak_Magnitude_Index < 71)) { 
                 MIDI[f] = 73; }
-        else if ((Peak_Magnitude_Index >= 37) && (Peak_Magnitude_Index < 39)) { 
+        else if ((Peak_Magnitude_Index >= 71) && (Peak_Magnitude_Index < 75)) { 
                 MIDI[f] = 74; }
-        else if ((Peak_Magnitude_Index >= 39) && (Peak_Magnitude_Index < 41)) {
+        else if ((Peak_Magnitude_Index >= 75) && (Peak_Magnitude_Index < 80)) {
                 MIDI[f] = 75; }
 
-        else if ((Peak_Magnitude_Index >= 41) && (Peak_Magnitude_Index < 43)) {
+        else if ((Peak_Magnitude_Index >= 80) && (Peak_Magnitude_Index < 85)) {
                 MIDI[f] = 76; }
-        else if ((Peak_Magnitude_Index >= 43) && (Peak_Magnitude_Index < 46)) { 
+        else if ((Peak_Magnitude_Index >= 85) && (Peak_Magnitude_Index < 90)) { 
                 MIDI[f] = 77; }
-        else if ((Peak_Magnitude_Index >= 46) && (Peak_Magnitude_Index < 49)) { 
+        else if ((Peak_Magnitude_Index >= 90) && (Peak_Magnitude_Index < 95)) { 
                 MIDI[f] = 78; }
-        else if ((Peak_Magnitude_Index >= 49) && (Peak_Magnitude_Index < 52)) {
+        else if ((Peak_Magnitude_Index >= 95) && (Peak_Magnitude_Index < 101)) {
                 MIDI[f] = 79; }
-        else if ((Peak_Magnitude_Index >= 52) && (Peak_Magnitude_Index < 55)) {
+        else if ((Peak_Magnitude_Index >= 101) && (Peak_Magnitude_Index < 106)) {
                 MIDI[f] = 80; }
-        else if ((Peak_Magnitude_Index >= 55) && (Peak_Magnitude_Index < 58)) {
+        else if ((Peak_Magnitude_Index >= 106) && (Peak_Magnitude_Index < 112)) {
                 MIDI[f] = 81; }
-        else if ((Peak_Magnitude_Index >= 58) && (Peak_Magnitude_Index < 61)) {
+        else if ((Peak_Magnitude_Index >= 112) && (Peak_Magnitude_Index < 119)) {
                 MIDI[f] = 82; }
-        else if ((Peak_Magnitude_Index >= 61) && (Peak_Magnitude_Index < 65)) { 
+        else if ((Peak_Magnitude_Index >= 119) && (Peak_Magnitude_Index < 127)) { 
                 MIDI[f] = 83; }
-        else if ((Peak_Magnitude_Index >= 65) && (Peak_Magnitude_Index < 69)) {
+        else if ((Peak_Magnitude_Index >= 127) && (Peak_Magnitude_Index < 136)) {
                 MIDI[f] = 84; }
-        else if ((Peak_Magnitude_Index >= 69) && (Peak_Magnitude_Index < 73)) { 
+        else if ((Peak_Magnitude_Index >= 136) && (Peak_Magnitude_Index < 143)) { 
                 MIDI[f] = 85; }
 
-        else if ((Peak_Magnitude_Index >= 73) && (Peak_Magnitude_Index < 77)) {
+        else if ((Peak_Magnitude_Index >= 143) && (Peak_Magnitude_Index < 152)) {
                 MIDI[f] = 86; }
-        else if ((Peak_Magnitude_Index >= 77) && (Peak_Magnitude_Index < 77)) { 
+        else if ((Peak_Magnitude_Index >= 152) && (Peak_Magnitude_Index < 160)) { 
                 MIDI[f] = 87; }
-        else if ((Peak_Magnitude_Index >= 82) && (Peak_Magnitude_Index < 87)) { 
+        else if ((Peak_Magnitude_Index >= 160) && (Peak_Magnitude_Index < 170)) { 
                 MIDI[f] = 88; }
-        else if ((Peak_Magnitude_Index >= 87) && (Peak_Magnitude_Index < 92)) {
+        else if ((Peak_Magnitude_Index >= 170) && (Peak_Magnitude_Index < 179)) {
                 MIDI[f] = 89; }
-        else if ((Peak_Magnitude_Index >= 92) && (Peak_Magnitude_Index < 98)) {
+        else if ((Peak_Magnitude_Index >= 179) && (Peak_Magnitude_Index < 190)) {
                 MIDI[f] = 90; }
-        else if ((Peak_Magnitude_Index >= 98) && (Peak_Magnitude_Index < 103)) {
+        else if ((Peak_Magnitude_Index >= 190) && (Peak_Magnitude_Index < 201)) {
                 MIDI[f] = 91; }
         else {
                 MIDI[f] = 0; } 

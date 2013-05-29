@@ -126,6 +126,9 @@
 <resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/lnkx_Spectrum_Digital_UART_Ex.cmd" name="lnkx_Spectrum_Digital_UART_Ex.cmd" rcbsApplicability="disable" resourcePath="/Application_1_Modified/lnkx_Spectrum_Digital_UART_Ex.cmd" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1007702376./Application_1_Modified/lnkx_Spectrum_Digital_UART_Ex.cmd">
 <tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1007702376./Application_1_Modified/lnkx_Spectrum_Digital_UART_Ex.cmd" name="C5500 Linker" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerDebug.1007702376"/>
 </resourceConfiguration>
+<resourceConfiguration exclude="true" id="com.ti.ccstudio.buildDefinitions.C5500.Debug.1687080612./Application_1_Modified/cfft32_t.c" name="cfft32_t.c" rcbsApplicability="disable" resourcePath="/Application_1_Modified/cfft32_t.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1005313850./Application_1_Modified/cfft32_t.c">
+<tool id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1005313850./Application_1_Modified/cfft32_t.c" name="C5500 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.compilerDebug.1005313850"/>
+</resourceConfiguration>
 </configuration>
 <configuration artifactExtension="out" artifactName="Application_1_Modified" description="" id="com.ti.ccstudio.buildDefinitions.C5500.Release.256639163" name="Release" parent="com.ti.ccstudio.buildDefinitions.C5500.Release">
 <toolChain id="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.ReleaseToolchain.562178181" name="TI Code Generation Tools" superClass="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.ReleaseToolchain" targetTool="com.ti.ccstudio.buildDefinitions.C5500_4.3.exe.linkerRelease.173658393">
